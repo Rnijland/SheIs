@@ -1,0 +1,29 @@
+[
+  {
+    "id": "ws-001",
+    "titel": "Herken de Signalen",
+    "beschrijving": "Leer de vroege waarschuwingssignalen van huiselijk geweld herkennen. Een interactieve workshop voor professionals en vrijwilligers.",
+    "datum": "2026-02-15T14:00:00.000Z",
+    "locatie": "Amsterdam Zuidoost",
+    "afbeelding": "https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&h=400&fit=crop",
+    "actief": true
+  },
+  {
+    "id": "ws-002",
+    "titel": "Zelfvertrouwen Opbouwen",
+    "beschrijving": "Praktische oefeningen en technieken om je zelfvertrouwen te versterken na een traumatische ervaring.",
+    "datum": "2026-02-22T10:00:00.000Z",
+    "locatie": "Amsterdam Zuidoost",
+    "afbeelding": "https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?w=600&h=400&fit=crop",
+    "actief": true
+  },
+  {
+    "id": "ws-003",
+    "titel": "Grenzen Stellen",
+    "beschrijving": "Leer op een gezonde manier grenzen te stellen in relaties en communicatie. Voor iedereen die worstelt met het aangeven van grenzen.",
+    "datum": "2026-03-08T13:00:00.000Z",
+    "locatie": "Amsterdam Zuidoost",
+    "afbeelding": "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=600&h=400&fit=crop",
+    "actief": true
+  }
+]

@@ -1,0 +1,20 @@
+[
+  {
+    "id": "ev-001",
+    "titel": "Internationale Vrouwendag 2026",
+    "beschrijving": "Vier met ons Internationale Vrouwendag! Een dag vol inspirerende verhalen, workshops en netwerkmogelijkheden.",
+    "datum": "2026-03-08T10:00:00.000Z",
+    "locatie": "Amsterdam Zuidoost",
+    "afbeelding": "https://images.unsplash.com/photo-1491438590914-bc09fcaaf77a?w=600&h=400&fit=crop",
+    "actief": true
+  },
+  {
+    "id": "ev-002",
+    "titel": "Orange the World - Stop Geweld Tegen Vrouwen",
+    "beschrijving": "Jaarlijkse campagne tegen geweld tegen vrouwen. Kom naar onze informatiebijeenkomst en draag oranje!",
+    "datum": "2026-11-25T18:00:00.000Z",
+    "locatie": "Amsterdam",
+    "afbeelding": "https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?w=600&h=400&fit=crop",
+    "actief": true
+  }
+]

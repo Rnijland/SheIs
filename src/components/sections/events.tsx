@@ -1,0 +1,323 @@
+"use client";
+
+import { useState } from "react";
+import { Event } from "@/lib/types";
+import { formatDate, formatTime } from "@/lib/data";
+import { motion, AnimatePresence } from "motion/react";
+import { Calendar, MapPin, Clock, ChevronDown, X } from "lucide-react";
+import Image from "next/image";
+
+interface EventsSectionProps {
+  workshops: Event[];
+  trainingen: Event[];
+  evenementen: Event[];
+}
+
+type TabType = "workshops" | "trainingen" | "evenementen";
+
+const ITEMS_PER_PAGE = 3;
+
+export function Events({
+  workshops,
+  trainingen,
+  evenementen,
+}: EventsSectionProps) {
+  const [activeTab, setActiveTab] = useState<TabType>("workshops");
+  const [visibleCount, setVisibleCount] = useState(ITEMS_PER_PAGE);
+  const [selectedEvent, setSelectedEvent] = useState<Event | null>(null);
+
+  const tabs: { id: TabType; label: string }[] = [
+    { id: "workshops", label: "Workshops" },
+    { id: "trainingen", label: "Trainingen" },
+    { id: "evenementen", label: "Evenementen" },
+  ];
+
+  const getActiveEvents = () => {
+    const now = new Date();
+    let events: Event[] = [];
+
+    switch (activeTab) {
+      case "workshops":
+        events = workshops;
+        break;
+      case "trainingen":
+        events = trainingen;
+        break;
+      case "evenementen":
+        events = evenementen;
+        break;
+    }
+
+    return events
+      .filter((e) => e.actief && new Date(e.datum) >= now)
+      .sort((a, b) => new Date(a.datum).getTime() - new Date(b.datum).getTime());
+  };
+
+  const activeEvents = getActiveEvents();
+  const visibleEvents = activeEvents.slice(0, visibleCount);
+  const hasMore = activeEvents.length > visibleCount;
+
+  const handleTabChange = (tab: TabType) => {
+    setActiveTab(tab);
+    setVisibleCount(ITEMS_PER_PAGE);
+  };
+
+  const loadMore = () => {
+    setVisibleCount((prev) => prev + ITEMS_PER_PAGE);
+  };
+
+  return (
+    <section id="agenda" className="py-24 bg-[#0a0a0a]">
+      <div className="container mx-auto px-6">
+        {/* Section Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-12"
+        >
+          <h2 className="font-heading text-4xl md:text-5xl font-bold text-white mb-4">
+            Agenda
+          </h2>
+          <p className="max-w-2xl mx-auto text-lg text-white/60">
+            Bekijk onze aankomende workshops, trainingen en evenementen.
+          </p>
+        </motion.div>
+
+        {/* Tabs */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="flex justify-center gap-2 mb-12"
+        >
+          {tabs.map((tab) => (
+            <button
+              key={tab.id}
+              onClick={() => handleTabChange(tab.id)}
+              className={`px-6 py-3 rounded-full font-medium transition-all duration-300 ${
+                activeTab === tab.id
+                  ? "bg-[#c9a050] text-black"
+                  : "bg-white/5 text-white/70 hover:bg-white/10 border border-white/10"
+              }`}
+            >
+              {tab.label}
+            </button>
+          ))}
+        </motion.div>
+
+        {/* Events List */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          className="max-w-3xl mx-auto"
+        >
+          {visibleEvents.length > 0 ? (
+            <div className="space-y-4">
+              <AnimatePresence mode="popLayout">
+                {visibleEvents.map((event, index) => (
+                  <motion.div
+                    key={event.id}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -20 }}
+                    transition={{ duration: 0.3, delay: index * 0.1 }}
+                  >
+                    <EventCard
+                      event={event}
+                      onClick={() => setSelectedEvent(event)}
+                    />
+                  </motion.div>
+                ))}
+              </AnimatePresence>
+
+              {/* Load More Button */}
+              {hasMore && (
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  className="text-center pt-6"
+                >
+                  <button
+                    onClick={loadMore}
+                    className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white/5 text-white/70 hover:bg-white/10 border border-white/10 transition-all duration-300"
+                  >
+                    <span>Meer laden</span>
+                    <ChevronDown className="w-4 h-4" />
+                  </button>
+                  <p className="text-white/40 text-sm mt-2">
+                    {activeEvents.length - visibleCount} meer beschikbaar
+                  </p>
+                </motion.div>
+              )}
+            </div>
+          ) : (
+            <div className="text-center py-16 px-8 rounded-2xl bg-white/5 border border-white/10">
+              <p className="text-white/60">
+                Er zijn momenteel geen {activeTab} gepland. Kom binnenkort terug
+                voor updates!
+              </p>
+            </div>
+          )}
+        </motion.div>
+      </div>
+
+      {/* Event Modal */}
+      <AnimatePresence>
+        {selectedEvent && (
+          <EventModal
+            event={selectedEvent}
+            onClose={() => setSelectedEvent(null)}
+          />
+        )}
+      </AnimatePresence>
+    </section>
+  );
+}
+
+function EventCard({
+  event,
+  onClick,
+}: {
+  event: Event;
+  onClick: () => void;
+}) {
+  return (
+    <button
+      onClick={onClick}
+      className="w-full text-left group"
+    >
+      <div className="flex flex-col md:flex-row gap-6 p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-[#c9a050]/30 hover:bg-white/[0.07] transition-all duration-300">
+        {/* Image */}
+        <div className="relative w-full md:w-40 h-32 md:h-28 rounded-xl overflow-hidden flex-shrink-0">
+          <Image
+            src={event.afbeelding}
+            alt={event.titel}
+            fill
+            className="object-cover group-hover:scale-105 transition-transform duration-300"
+          />
+        </div>
+
+        {/* Content */}
+        <div className="flex-1 min-w-0">
+          <h3 className="font-heading text-lg font-semibold text-white mb-2 group-hover:text-[#c9a050] transition-colors">
+            {event.titel}
+          </h3>
+          <p className="text-white/60 text-sm mb-3 line-clamp-2">
+            {event.beschrijving}
+          </p>
+
+          <div className="flex flex-wrap gap-4 text-sm">
+            <div className="flex items-center gap-1.5 text-[#c9a050]">
+              <Calendar className="w-4 h-4" />
+              <span>{formatDate(event.datum)}</span>
+            </div>
+            <div className="flex items-center gap-1.5 text-white/50">
+              <Clock className="w-4 h-4" />
+              <span>{formatTime(event.datum)}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </button>
+  );
+}
+
+function EventModal({
+  event,
+  onClose,
+}: {
+  event: Event;
+  onClose: () => void;
+}) {
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="fixed inset-0 z-50 flex items-center justify-center p-4"
+    >
+      {/* Backdrop */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        className="absolute inset-0 bg-black/80 backdrop-blur-sm"
+        onClick={onClose}
+      />
+
+      {/* Modal */}
+      <motion.div
+        initial={{ opacity: 0, scale: 0.95, y: 20 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        exit={{ opacity: 0, scale: 0.95, y: 20 }}
+        className="relative w-full max-w-2xl bg-[#141414] border border-white/10 rounded-2xl overflow-hidden shadow-2xl"
+      >
+        {/* Close button */}
+        <button
+          onClick={onClose}
+          className="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-black/50 text-white/70 hover:text-white flex items-center justify-center transition-colors"
+        >
+          <X className="w-5 h-5" />
+        </button>
+
+        {/* Image */}
+        <div className="relative w-full h-64">
+          <Image
+            src={event.afbeelding}
+            alt={event.titel}
+            fill
+            className="object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#141414] to-transparent" />
+        </div>
+
+        {/* Content */}
+        <div className="p-8 -mt-16 relative">
+          <h2 className="font-heading text-2xl md:text-3xl font-bold text-white mb-4">
+            {event.titel}
+          </h2>
+
+          <div className="flex flex-wrap gap-4 mb-6 text-sm">
+            <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#c9a050]/20 text-[#c9a050]">
+              <Calendar className="w-4 h-4" />
+              <span>{formatDate(event.datum)}</span>
+            </div>
+            <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 text-white/70">
+              <Clock className="w-4 h-4" />
+              <span>{formatTime(event.datum)}</span>
+            </div>
+            <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 text-white/70">
+              <MapPin className="w-4 h-4" />
+              <span>{event.locatie}</span>
+            </div>
+          </div>
+
+          <p className="text-white/70 leading-relaxed mb-8">
+            {event.beschrijving}
+          </p>
+
+          {/* CTA */}
+          <div className="flex gap-4">
+            <a
+              href={`tel:+31630340794`}
+              className="flex-1 text-center px-6 py-3 rounded-full bg-[#c9a050] text-black font-medium hover:bg-[#d4af37] transition-colors"
+            >
+              Aanmelden
+            </a>
+            <button
+              onClick={onClose}
+              className="px-6 py-3 rounded-full bg-white/10 text-white/70 hover:bg-white/20 transition-colors"
+            >
+              Sluiten
+            </button>
+          </div>
+        </div>
+      </motion.div>
+    </motion.div>
+  );
+}

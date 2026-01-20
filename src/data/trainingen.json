@@ -1,0 +1,20 @@
+[
+  {
+    "id": "tr-001",
+    "titel": "Nieuwe Krachtvrouwen - Basiscursus",
+    "beschrijving": "De complete 8-weekse training om je eigen pijn te verwerken en anderen te leren ondersteunen. Inclusief certificaat.",
+    "datum": "2026-03-01T09:00:00.000Z",
+    "locatie": "Amsterdam Zuidoost",
+    "afbeelding": "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=600&h=400&fit=crop",
+    "actief": true
+  },
+  {
+    "id": "tr-002",
+    "titel": "Train de Trainer",
+    "beschrijving": "Voor ervaren krachtvrouwen die anderen willen begeleiden. Verdiepende training met supervisie.",
+    "datum": "2026-04-15T09:00:00.000Z",
+    "locatie": "Amsterdam",
+    "afbeelding": "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&h=400&fit=crop",
+    "actief": true
+  }
+]

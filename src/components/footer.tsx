@@ -8,43 +8,43 @@ export function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-[#0a0a0a] text-white py-16">
-      <div className="container mx-auto px-6">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
+    <footer className="bg-[#0a0a0a] text-white py-12 md:py-16">
+      <div className="container mx-auto px-4 md:px-6">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-10 md:gap-12">
           {/* Brand */}
-          <div className="md:col-span-2">
+          <div className="md:col-span-2 text-center md:text-left">
             <Image
               src="/logos/logoshewhite.png"
               alt="SHE - Stichting Human Empowerment"
-              width={120}
-              height={60}
-              className="mb-6"
+              width={100}
+              height={50}
+              className="mb-5 md:mb-6 mx-auto md:mx-0"
             />
-            <p className="text-white/70 mb-6 max-w-md leading-relaxed">
+            <p className="text-white/70 mb-5 md:mb-6 max-w-md leading-relaxed text-sm md:text-base mx-auto md:mx-0">
               Stichting Human Empowerment biedt ondersteuning aan vrouwen,
               mannen en jongeren die te maken hebben met huiselijk geweld en
               kindermishandeling.
             </p>
 
             {/* 24/7 Badge */}
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#c9a050]/20 border border-[#c9a050]/30 text-[#c9a050] text-sm font-medium">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#c9a050]/20 border border-[#c9a050]/30 text-[#c9a050] text-xs md:text-sm font-medium">
               <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#c9a050] opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-[#c9a050]"></span>
               </span>
-              24/7 Bereikbaar voor Crisishulp
+              24/7 Bereikbaar
             </div>
           </div>
 
           {/* Quick Links */}
-          <div>
-            <h4 className="font-semibold text-lg mb-4 text-white">Snelle Links</h4>
-            <ul className="space-y-3">
+          <div className="text-center md:text-left">
+            <h4 className="font-semibold text-base md:text-lg mb-4 text-white">Snelle Links</h4>
+            <ul className="space-y-2 md:space-y-3">
               {navItems.map((item) => (
                 <li key={item.href}>
                   <a
                     href={item.href}
-                    className="text-white/60 hover:text-[#c9a050] transition-colors"
+                    className="text-white/60 hover:text-[#c9a050] transition-colors text-sm md:text-base"
                   >
                     {item.label}
                   </a>
@@ -54,13 +54,13 @@ export function Footer() {
           </div>
 
           {/* Contact */}
-          <div>
-            <h4 className="font-semibold text-lg mb-4 text-white">Contact</h4>
-            <ul className="space-y-3">
+          <div className="text-center md:text-left">
+            <h4 className="font-semibold text-base md:text-lg mb-4 text-white">Contact</h4>
+            <ul className="space-y-2 md:space-y-3">
               <li>
                 <a
                   href={`tel:${siteConfig.contact.telefoon}`}
-                  className="flex items-center gap-2 text-white/60 hover:text-[#c9a050] transition-colors"
+                  className="inline-flex items-center gap-2 text-white/60 hover:text-[#c9a050] transition-colors text-sm md:text-base"
                 >
                   <Phone className="w-4 h-4" />
                   {siteConfig.contact.telefoon.replace("+31", "06-")}
@@ -69,20 +69,20 @@ export function Footer() {
               <li>
                 <a
                   href={`mailto:${siteConfig.contact.email}`}
-                  className="flex items-center gap-2 text-white/60 hover:text-[#c9a050] transition-colors"
+                  className="inline-flex items-center gap-2 text-white/60 hover:text-[#c9a050] transition-colors text-sm md:text-base"
                 >
                   <Mail className="w-4 h-4" />
                   {siteConfig.contact.email}
                 </a>
               </li>
-              <li className="flex items-center gap-2 text-white/60">
-                <MapPin className="w-4 h-4" />
-                {siteConfig.contact.adres}
+              <li className="inline-flex items-center gap-2 text-white/60 text-sm md:text-base">
+                <MapPin className="w-4 h-4 flex-shrink-0" />
+                <span>{siteConfig.contact.adres}</span>
               </li>
             </ul>
 
             {/* Social Links */}
-            <div className="flex gap-4 mt-6">
+            <div className="flex justify-center md:justify-start gap-4 mt-5 md:mt-6">
               {siteConfig.social.instagram && (
                 <a
                   href={siteConfig.social.instagram}
@@ -121,13 +121,13 @@ export function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="mt-12 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-white/50 text-sm">
+        <div className="mt-10 md:mt-12 pt-6 md:pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-3 md:gap-4 text-center">
+          <p className="text-white/50 text-xs md:text-sm">
             &copy; {currentYear} Stichting Human Empowerment. Alle rechten
             voorbehouden.
           </p>
           {siteConfig.kvk && (
-            <p className="text-white/50 text-sm">
+            <p className="text-white/50 text-xs md:text-sm">
               KvK: {siteConfig.kvk}
             </p>
           )}

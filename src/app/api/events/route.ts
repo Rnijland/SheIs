@@ -1,43 +1,98 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Event, EventType } from "@/lib/types";
-import fs from "fs";
-import path from "path";
+import { put, list, del } from "@vercel/blob";
 
-const DATA_DIR = path.join(process.cwd(), "src", "data");
+// Fallback data for initial seeding
+import workshopsData from "@/data/workshops.json";
+import trainingenData from "@/data/trainingen.json";
+import evenementenData from "@/data/evenementen.json";
 
-function getFilePath(type: EventType | string): string {
-  switch (type) {
+const BLOB_PREFIX = "she-events";
+
+// Helper to get blob filename
+function getBlobName(type: EventType | string): string {
+  const normalizedType = type === "workshops" ? "workshop" :
+                         type === "trainingen" ? "training" :
+                         type === "evenementen" ? "evenement" : type;
+  return `${BLOB_PREFIX}/${normalizedType}.json`;
+}
+
+// Fallback data from JSON files
+function getFallbackData(type: EventType | string): Event[] {
+  const normalizedType = type === "workshops" ? "workshop" :
+                         type === "trainingen" ? "training" :
+                         type === "evenementen" ? "evenement" : type;
+  switch (normalizedType) {
     case "workshop":
-    case "workshops":
-      return path.join(DATA_DIR, "workshops.json");
+      return workshopsData as Event[];
     case "training":
-    case "trainingen":
-      return path.join(DATA_DIR, "trainingen.json");
+      return trainingenData as Event[];
     case "evenement":
-    case "evenementen":
-      return path.join(DATA_DIR, "evenementen.json");
+      return evenementenData as Event[];
     default:
-      throw new Error(`Invalid event type: ${type}`);
+      return [];
   }
 }
 
-function readEvents(type: EventType | string): Event[] {
+// Get events - uses Blob if configured, otherwise JSON files
+async function getEvents(type: EventType | string): Promise<Event[]> {
+  // Check if Blob is configured
+  if (!process.env.BLOB_READ_WRITE_TOKEN) {
+    console.log("Blob not configured, using JSON files (changes won't persist across deploys)");
+    return getFallbackData(type);
+  }
+
   try {
-    const filePath = getFilePath(type);
-    const data = fs.readFileSync(filePath, "utf-8");
-    return JSON.parse(data);
-  } catch {
-    return [];
+    const blobName = getBlobName(type);
+    const { blobs } = await list({ prefix: blobName });
+
+    if (blobs.length === 0) {
+      // First time - seed from JSON files
+      const initialData = getFallbackData(type);
+      await saveEvents(type, initialData);
+      return initialData;
+    }
+
+    // Fetch from blob
+    const response = await fetch(blobs[0].url, { cache: "no-store" });
+    return await response.json();
+  } catch (error) {
+    console.error(`Error fetching ${type} from blob:`, error);
+    return getFallbackData(type);
   }
 }
 
-function writeEvents(type: EventType | string, events: Event[]) {
-  const filePath = getFilePath(type);
-  fs.writeFileSync(filePath, JSON.stringify(events, null, 2));
+// Save events to Blob
+async function saveEvents(type: EventType | string, events: Event[]): Promise<void> {
+  if (!process.env.BLOB_READ_WRITE_TOKEN) {
+    console.log("Blob not configured, can't save persistently");
+    return;
+  }
+
+  const blobName = getBlobName(type);
+
+  try {
+    // Delete existing blob if exists
+    const { blobs } = await list({ prefix: blobName });
+    for (const blob of blobs) {
+      await del(blob.url);
+    }
+  } catch {
+    // Ignore delete errors
+  }
+
+  // Upload new data
+  await put(blobName, JSON.stringify(events, null, 2), {
+    access: "public",
+    contentType: "application/json",
+  });
 }
 
-function generateId(type: EventType): string {
-  const prefix = type === "workshop" ? "ws" : type === "training" ? "tr" : "ev";
+function generateId(type: EventType | string): string {
+  const normalizedType = type === "workshops" ? "workshop" :
+                         type === "trainingen" ? "training" :
+                         type === "evenementen" ? "evenement" : type;
+  const prefix = normalizedType === "workshop" ? "ws" : normalizedType === "training" ? "tr" : "ev";
   return `${prefix}-${Date.now()}`;
 }
 
@@ -48,16 +103,18 @@ export async function GET(request: NextRequest) {
     const type = searchParams.get("type");
 
     if (type) {
-      const events = readEvents(type);
+      const events = await getEvents(type);
       return NextResponse.json(events);
     }
 
     // Return all events
-    return NextResponse.json({
-      workshops: readEvents("workshop"),
-      trainingen: readEvents("training"),
-      evenementen: readEvents("evenement"),
-    });
+    const [workshops, trainingen, evenementen] = await Promise.all([
+      getEvents("workshop"),
+      getEvents("training"),
+      getEvents("evenement"),
+    ]);
+
+    return NextResponse.json({ workshops, trainingen, evenementen });
   } catch (error) {
     console.error("GET events error:", error);
     return NextResponse.json(
@@ -71,8 +128,7 @@ export async function GET(request: NextRequest) {
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { type, titel, beschrijving, datum, locatie, afbeelding, actief } =
-      body;
+    const { type, titel, beschrijving, datum, locatie, afbeelding, actief } = body;
 
     if (!type || !titel || !beschrijving || !datum || !locatie) {
       return NextResponse.json(
@@ -81,7 +137,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const events = readEvents(type);
+    const events = await getEvents(type);
     const newEvent: Event = {
       id: generateId(type as EventType),
       titel,
@@ -95,7 +151,7 @@ export async function POST(request: NextRequest) {
     };
 
     events.push(newEvent);
-    writeEvents(type, events);
+    await saveEvents(type, events);
 
     return NextResponse.json({ success: true, event: newEvent });
   } catch (error) {
@@ -111,16 +167,7 @@ export async function POST(request: NextRequest) {
 export async function PUT(request: NextRequest) {
   try {
     const body = await request.json();
-    const {
-      type,
-      id,
-      titel,
-      beschrijving,
-      datum,
-      locatie,
-      afbeelding,
-      actief,
-    } = body;
+    const { type, id, titel, beschrijving, datum, locatie, afbeelding, actief } = body;
 
     if (!type || !id) {
       return NextResponse.json(
@@ -129,7 +176,7 @@ export async function PUT(request: NextRequest) {
       );
     }
 
-    const events = readEvents(type);
+    const events = await getEvents(type);
     const index = events.findIndex((e) => e.id === id);
 
     if (index === -1) {
@@ -149,7 +196,7 @@ export async function PUT(request: NextRequest) {
       actief: actief !== undefined ? actief : events[index].actief,
     };
 
-    writeEvents(type, events);
+    await saveEvents(type, events);
 
     return NextResponse.json({ success: true, event: events[index] });
   } catch (error) {
@@ -175,7 +222,7 @@ export async function DELETE(request: NextRequest) {
       );
     }
 
-    const events = readEvents(type);
+    const events = await getEvents(type);
     const filteredEvents = events.filter((e) => e.id !== id);
 
     if (filteredEvents.length === events.length) {
@@ -185,7 +232,7 @@ export async function DELETE(request: NextRequest) {
       );
     }
 
-    writeEvents(type, filteredEvents);
+    await saveEvents(type, filteredEvents);
 
     return NextResponse.json({ success: true });
   } catch (error) {

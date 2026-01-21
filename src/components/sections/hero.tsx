@@ -1,28 +1,78 @@
 "use client";
 
+import { useState, useRef, useEffect } from "react";
 import { heroContent, siteConfig } from "@/data/site";
 import { ShimmerButton } from "@/components/magicui/shimmer-button";
 import { PulsatingButton } from "@/components/magicui/pulsating-button";
 import { motion } from "motion/react";
-import { Phone, ArrowDown } from "lucide-react";
+import { Phone, ArrowDown, Loader2 } from "lucide-react";
 import Image from "next/image";
 
 export function Hero() {
+  const [videoLoaded, setVideoLoaded] = useState(false);
+  const [videoError, setVideoError] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (video) {
+      // Preload video
+      video.load();
+    }
+  }, []);
+
   return (
     <section
       id="home"
       className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#0a0a0a]"
     >
-      {/* Background Image with Overlay */}
+      {/* Video Background */}
       <div className="absolute inset-0">
-        <Image
-          src="https://images.unsplash.com/photo-1573164713988-8665fc963095?w=1920&q=80"
-          alt="Background"
-          fill
-          className="object-cover opacity-20"
-          priority
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/80" />
+        {/* Loading indicator */}
+        {!videoLoaded && !videoError && (
+          <div className="absolute inset-0 flex items-center justify-center bg-[#0a0a0a] z-10">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className="flex flex-col items-center gap-4"
+            >
+              <Loader2 className="w-8 h-8 text-[#c9a050] animate-spin" />
+              <span className="text-white/50 text-sm">Laden...</span>
+            </motion.div>
+          </div>
+        )}
+
+        {/* Video element */}
+        <video
+          ref={videoRef}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+          onLoadedData={() => setVideoLoaded(true)}
+          onError={() => setVideoError(true)}
+          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
+            videoLoaded ? "opacity-40" : "opacity-0"
+          }`}
+        >
+          <source src="/videos/shehero.mp4" type="video/mp4" />
+        </video>
+
+        {/* Fallback image if video fails */}
+        {videoError && (
+          <Image
+            src="https://images.unsplash.com/photo-1573164713988-8665fc963095?w=1920&q=80"
+            alt="Background"
+            fill
+            className="object-cover opacity-20"
+            priority
+          />
+        )}
+
+        {/* Gradient overlays for smooth transitions */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-black/80" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent" />
       </div>
 
       {/* Content */}

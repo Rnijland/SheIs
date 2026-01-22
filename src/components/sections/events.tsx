@@ -67,7 +67,11 @@ export function Events({
   };
 
   return (
-    <section id="agenda" className="py-16 md:py-24 bg-gradient-to-b from-[#1a3a4a] to-[#0f2a36]">
+    <section
+      id="agenda"
+      className="relative py-16 md:py-24 bg-gradient-to-b from-[#1a3a4a] to-[#0f2a36]"
+      style={{ backgroundImage: "url('/bgGreen.jpg')", backgroundSize: "cover", backgroundPosition: "center" }}
+    >
       <div className="container mx-auto px-4 md:px-6">
         {/* Section Header */}
         <motion.div

@@ -52,7 +52,11 @@ export function Contact() {
   };
 
   return (
-    <section id="contact" className="py-16 md:py-24 bg-white">
+    <section
+      id="contact"
+      className="relative py-16 md:py-24 bg-white"
+      style={{ backgroundImage: "url('/bgWhite.jpg')", backgroundSize: "cover", backgroundPosition: "center" }}
+    >
       <div className="container mx-auto px-4 md:px-6">
         {/* Section Header */}
         <motion.div

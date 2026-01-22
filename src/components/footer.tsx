@@ -8,13 +8,16 @@ export function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-[#0a0a0a] text-white py-12 md:py-16">
+    <footer
+      className="relative bg-[#0a0a0a] text-white py-12 md:py-16"
+      style={{ backgroundImage: "url('/bgGreen.jpg')", backgroundSize: "cover", backgroundPosition: "center" }}
+    >
       <div className="container mx-auto px-4 md:px-6">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-10 md:gap-12">
           {/* Brand */}
           <div className="md:col-span-2 text-center md:text-left">
             <Image
-              src="/logos/logoshewhite.png"
+              src="/logos/WhiteLogoHero.png"
               alt="SHE - Stichting Human Empowerment"
               width={100}
               height={50}

@@ -47,7 +47,7 @@ export function Nav() {
               className="flex items-center"
             >
               <Image
-                src={scrolled ? "/logos/logosheblack.png" : "/logos/logoshewhite.png"}
+                src={scrolled ? "/logos/BlackLogoTopNav.png" : "/logos/whiteLogoTopNav.png"}
                 alt="SHE"
                 width={80}
                 height={40}

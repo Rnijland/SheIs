@@ -7,7 +7,11 @@ import Image from "next/image";
 
 export function About() {
   return (
-    <section id="over-ons" className="py-16 md:py-24 bg-[#f8f7f4]">
+    <section
+      id="over-ons"
+      className="relative py-16 md:py-24 bg-[#f8f7f4]"
+      style={{ backgroundImage: "url('/bgWhite.jpg')", backgroundSize: "cover", backgroundPosition: "center" }}
+    >
       <div className="container mx-auto px-6">
         {/* Section Header */}
         <motion.div

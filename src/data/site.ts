@@ -44,7 +44,7 @@ export const aboutContent: AboutContent = {
     rol: "Oprichter & Ervaringsdeskundige",
     beschrijving:
       "Lydy Blijd is ervaringsdeskundige op het gebied van huiselijk geweld en kindermishandeling. Haar eigen ervaringen heeft zij kunnen ombuigen naar kracht en positiviteit, en nu helpt zij anderen hetzelfde te doen.",
-    afbeelding: "/lydly-blijd.jfif",
+    afbeelding: "/lydly-blijd.jpg",
   },
   statistieken: [
     {

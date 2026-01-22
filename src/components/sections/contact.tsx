@@ -114,11 +114,15 @@ export function Contact() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.5, delay: 0.2 }}
+            className="h-full"
           >
-            <div className="bg-[#1a3a4a] rounded-2xl p-6 md:p-8">
-              <h3 className="font-heading text-xl md:text-2xl font-semibold text-white mb-5 md:mb-6">
+            <div className="bg-[#1a3a4a] rounded-2xl p-6 md:p-8 h-full flex flex-col justify-center">
+              <h3 className="font-heading text-xl md:text-2xl font-semibold text-white mb-3 md:mb-4">
                 Stuur ons een bericht
               </h3>
+              <p className="text-white/70 text-sm md:text-base mb-5 md:mb-6">
+                Wij staan voor je klaar. Of je nu vragen hebt, advies zoekt of gewoon even wilt praten - vul het formulier in en we nemen zo snel mogelijk contact met je op. Alles blijft vertrouwelijk.
+              </p>
 
               <form onSubmit={handleSubmit} className="space-y-4 md:space-y-5">
                 <div>
@@ -184,13 +188,13 @@ export function Contact() {
                   )}
                 </button>
 
-                {submitStatus === "success" && (
-                  <p className="text-green-600 text-center text-sm">
+                  {submitStatus === "success" && (
+                  <p className="text-green-400 text-center text-sm">
                     Bedankt! We nemen zo snel mogelijk contact met je op.
                   </p>
                 )}
                 {submitStatus === "error" && (
-                  <p className="text-red-600 text-center text-sm">
+                  <p className="text-red-400 text-center text-sm">
                     Er is iets misgegaan. Probeer het later opnieuw.
                   </p>
                 )}

@@ -72,7 +72,9 @@ export function Events({
       className="relative py-16 md:py-24 bg-gradient-to-b from-[#1a3a4a] to-[#0f2a36]"
       style={{ backgroundImage: "url('/bgGreen.jpg')", backgroundSize: "cover", backgroundPosition: "center" }}
     >
-      <div className="container mx-auto px-4 md:px-6">
+      {/* Subtle overlay to soften background pattern */}
+      <div className="absolute inset-0 bg-[#1a3a4a]/60" />
+      <div className="relative container mx-auto px-4 md:px-6">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}

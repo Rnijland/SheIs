@@ -12,7 +12,9 @@ export function Footer() {
       className="relative bg-[#0a0a0a] text-white py-12 md:py-16"
       style={{ backgroundImage: "url('/bgGreen.jpg')", backgroundSize: "cover", backgroundPosition: "bottom" }}
     >
-      <div className="container mx-auto px-4 md:px-6">
+      {/* Subtle overlay to soften background pattern */}
+      <div className="absolute inset-0 bg-[#0a0a0a]/70" />
+      <div className="relative container mx-auto px-4 md:px-6">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-10 md:gap-12">
           {/* Brand */}
           <div className="md:col-span-2 text-center md:text-left">

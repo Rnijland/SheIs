@@ -115,14 +115,14 @@ export function Contact() {
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            <div className="bg-[#f8f7f4] rounded-2xl p-6 md:p-8">
-              <h3 className="font-heading text-xl md:text-2xl font-semibold text-black mb-5 md:mb-6">
+            <div className="bg-[#1a3a4a] rounded-2xl p-6 md:p-8">
+              <h3 className="font-heading text-xl md:text-2xl font-semibold text-white mb-5 md:mb-6">
                 Stuur ons een bericht
               </h3>
 
               <form onSubmit={handleSubmit} className="space-y-4 md:space-y-5">
                 <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1.5 md:mb-2">
+                  <label htmlFor="name" className="block text-sm font-medium text-white/80 mb-1.5 md:mb-2">
                     Naam
                   </label>
                   <input
@@ -131,13 +131,13 @@ export function Contact() {
                     value={formState.name}
                     onChange={(e) => setFormState({ ...formState, name: e.target.value })}
                     required
-                    className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-white text-black text-sm md:text-base focus:outline-none focus:ring-2 focus:ring-[#c9a050] focus:border-transparent transition-all"
+                    className="w-full px-4 py-3 rounded-xl border border-white/20 bg-white text-black text-sm md:text-base focus:outline-none focus:ring-2 focus:ring-[#c9a050] focus:border-transparent transition-all"
                     placeholder="Je naam"
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1.5 md:mb-2">
+                  <label htmlFor="email" className="block text-sm font-medium text-white/80 mb-1.5 md:mb-2">
                     E-mail
                   </label>
                   <input
@@ -146,13 +146,13 @@ export function Contact() {
                     value={formState.email}
                     onChange={(e) => setFormState({ ...formState, email: e.target.value })}
                     required
-                    className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-white text-black text-sm md:text-base focus:outline-none focus:ring-2 focus:ring-[#c9a050] focus:border-transparent transition-all"
+                    className="w-full px-4 py-3 rounded-xl border border-white/20 bg-white text-black text-sm md:text-base focus:outline-none focus:ring-2 focus:ring-[#c9a050] focus:border-transparent transition-all"
                     placeholder="je@email.nl"
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1.5 md:mb-2">
+                  <label htmlFor="message" className="block text-sm font-medium text-white/80 mb-1.5 md:mb-2">
                     Bericht
                   </label>
                   <textarea
@@ -161,7 +161,7 @@ export function Contact() {
                     onChange={(e) => setFormState({ ...formState, message: e.target.value })}
                     required
                     rows={4}
-                    className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-white text-black text-sm md:text-base focus:outline-none focus:ring-2 focus:ring-[#c9a050] focus:border-transparent transition-all resize-none"
+                    className="w-full px-4 py-3 rounded-xl border border-white/20 bg-white text-black text-sm md:text-base focus:outline-none focus:ring-2 focus:ring-[#c9a050] focus:border-transparent transition-all resize-none"
                     placeholder="Hoe kunnen we je helpen?"
                   />
                 </div>
@@ -169,7 +169,7 @@ export function Contact() {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 md:py-4 bg-black text-white font-semibold rounded-xl hover:bg-gray-800 disabled:opacity-50 disabled:cursor-not-allowed active:scale-[0.98] transition-all text-sm md:text-base"
+                  className="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 md:py-4 bg-[#c9a050] text-black font-semibold rounded-xl hover:bg-[#d4af37] disabled:opacity-50 disabled:cursor-not-allowed active:scale-[0.98] transition-all text-sm md:text-base"
                 >
                   {isSubmitting ? (
                     <>
@@ -226,23 +226,23 @@ export function Contact() {
               href={directionsUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center gap-2 w-full px-5 md:px-6 py-4 bg-[#f8f7f4] text-black font-medium rounded-xl hover:bg-gray-100 active:scale-[0.98] transition-all border border-gray-200"
+              className="flex items-center justify-center gap-2 w-full px-5 md:px-6 py-4 bg-[#1a3a4a] text-white font-medium rounded-xl hover:bg-[#244a5a] active:scale-[0.98] transition-all border border-[#1a3a4a]"
             >
               <MapPin className="w-5 h-5 text-[#c9a050]" />
               <span>Routebeschrijving</span>
-              <ExternalLink className="w-4 h-4 text-gray-400" />
+              <ExternalLink className="w-4 h-4 text-white/60" />
             </a>
 
             {/* Contact Info Cards - Fully clickable on mobile */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4">
               <a
                 href={`tel:${siteConfig.contact.telefoon}`}
-                className="block p-4 md:p-5 rounded-xl bg-[#f8f7f4] border border-gray-100 hover:bg-gray-100 active:scale-[0.98] transition-all"
+                className="block p-4 md:p-5 rounded-xl bg-[#1a3a4a] border border-[#1a3a4a] hover:bg-[#244a5a] active:scale-[0.98] transition-all"
               >
-                <div className="w-10 h-10 rounded-lg bg-[#c9a050]/10 flex items-center justify-center mb-3">
-                  <Phone className="w-5 h-5 text-[#c9a050]" />
+                <div className="w-10 h-10 rounded-lg bg-[#c9a050] flex items-center justify-center mb-3">
+                  <Phone className="w-5 h-5 text-white" />
                 </div>
-                <h4 className="font-semibold text-black mb-1 text-sm md:text-base">Telefoon</h4>
+                <h4 className="font-semibold text-white mb-1 text-sm md:text-base">Telefoon</h4>
                 <span className="text-[#c9a050] text-sm md:text-base">
                   {siteConfig.contact.telefoon.replace("+31", "06-")}
                 </span>
@@ -250,12 +250,12 @@ export function Contact() {
 
               <a
                 href={`mailto:${siteConfig.contact.email}`}
-                className="block p-4 md:p-5 rounded-xl bg-[#f8f7f4] border border-gray-100 hover:bg-gray-100 active:scale-[0.98] transition-all"
+                className="block p-4 md:p-5 rounded-xl bg-[#1a3a4a] border border-[#1a3a4a] hover:bg-[#244a5a] active:scale-[0.98] transition-all"
               >
-                <div className="w-10 h-10 rounded-lg bg-[#c9a050]/10 flex items-center justify-center mb-3">
-                  <Mail className="w-5 h-5 text-[#c9a050]" />
+                <div className="w-10 h-10 rounded-lg bg-[#c9a050] flex items-center justify-center mb-3">
+                  <Mail className="w-5 h-5 text-white" />
                 </div>
-                <h4 className="font-semibold text-black mb-1 text-sm md:text-base">E-mail</h4>
+                <h4 className="font-semibold text-white mb-1 text-sm md:text-base">E-mail</h4>
                 <span className="text-[#c9a050] text-sm md:text-base break-all">
                   {siteConfig.contact.email}
                 </span>
@@ -263,12 +263,12 @@ export function Contact() {
             </div>
 
             {/* Location Info */}
-            <div className="p-4 md:p-5 rounded-xl bg-[#f8f7f4] border border-gray-100">
-              <div className="w-10 h-10 rounded-lg bg-[#c9a050]/10 flex items-center justify-center mb-3">
-                <MapPin className="w-5 h-5 text-[#c9a050]" />
+            <div className="p-4 md:p-5 rounded-xl bg-[#1a3a4a] border border-[#1a3a4a]">
+              <div className="w-10 h-10 rounded-lg bg-[#c9a050] flex items-center justify-center mb-3">
+                <MapPin className="w-5 h-5 text-white" />
               </div>
-              <h4 className="font-semibold text-black mb-1 text-sm md:text-base">Locatie</h4>
-              <p className="text-gray-600 text-sm md:text-base">{siteConfig.contact.adres}</p>
+              <h4 className="font-semibold text-white mb-1 text-sm md:text-base">Locatie</h4>
+              <p className="text-white/80 text-sm md:text-base">{siteConfig.contact.adres}</p>
             </div>
           </motion.div>
         </div>

@@ -9,11 +9,11 @@ export function About() {
   return (
     <section
       id="over-ons"
-      className="relative py-16 md:py-24 bg-[#f8f7f4]"
-      style={{ backgroundImage: "url('/bgWhite.jpg')", backgroundSize: "cover", backgroundPosition: "center" }}
+      className="relative py-16 md:py-24 bg-[#1a3a4a]"
+      style={{ backgroundImage: "url('/bgGreen.jpg')", backgroundSize: "cover", backgroundPosition: "center" }}
     >
       {/* Subtle overlay to soften background pattern */}
-      <div className="absolute inset-0 bg-[#f8f7f4]/70" />
+      <div className="absolute inset-0 bg-[#1a3a4a]/60" />
       <div className="relative container mx-auto px-6">
         {/* Section Header */}
         <motion.div
@@ -23,10 +23,10 @@ export function About() {
           transition={{ duration: 0.5 }}
           className="text-center mb-12 md:mb-16"
         >
-          <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-black mb-4">
+          <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
             {aboutContent.titel}
           </h2>
-          <p className="max-w-2xl mx-auto text-base md:text-lg text-gray-600 px-4">
+          <p className="max-w-2xl mx-auto text-base md:text-lg text-white/80 px-4">
             {aboutContent.intro}
           </p>
         </motion.div>
@@ -46,7 +46,7 @@ export function About() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: index * 0.1 }}
-              className="text-center py-8 px-4 rounded-2xl bg-white border border-gray-100 shadow-sm"
+              className="text-center py-8 px-4 rounded-2xl bg-white/95 border border-white/20 shadow-lg"
             >
               <div className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#c9a050] mb-2">
                 {typeof stat.waarde === "number" ? (
@@ -68,10 +68,10 @@ export function About() {
           transition={{ duration: 0.5, delay: 0.2 }}
           className="max-w-4xl mx-auto"
         >
-          <div className="bg-white rounded-3xl p-6 md:p-8 lg:p-12 shadow-sm border border-gray-100">
+          <div className="bg-white/95 rounded-3xl p-6 md:p-8 lg:p-12 shadow-lg border border-white/20">
             <div className="flex flex-col md:flex-row gap-6 md:gap-8 items-center">
               {/* Image */}
-              <div className="relative w-32 h-32 md:w-40 md:h-40 lg:w-52 lg:h-52 rounded-full overflow-hidden border-4 border-[#c9a050]/20 flex-shrink-0 shadow-lg">
+              <div className="relative w-32 h-32 md:w-40 md:h-40 lg:w-52 lg:h-52 rounded-full overflow-hidden border-4 border-[#c9a050]/30 flex-shrink-0 shadow-lg">
                 <Image
                   src={aboutContent.oprichter.afbeelding}
                   alt={aboutContent.oprichter.naam}

@@ -25,7 +25,6 @@ export function Hero() {
     <section
       id="home"
       className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#0f2a36]"
-      style={{ backgroundImage: "url('/bgGreen.jpg')", backgroundSize: "cover", backgroundPosition: "center" }}
     >
       {/* Video Background */}
       <div className="absolute inset-0">

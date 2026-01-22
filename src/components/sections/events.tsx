@@ -162,8 +162,8 @@ export function Events({
               )}
             </div>
           ) : (
-            <div className="text-center py-12 md:py-16 px-6 md:px-8 rounded-2xl bg-white/5 border border-white/10">
-              <p className="text-white/60 text-sm md:text-base">
+            <div className="text-center py-12 md:py-16 px-6 md:px-8 rounded-2xl bg-white border border-gray-100">
+              <p className="text-gray-600 text-sm md:text-base">
                 Er zijn momenteel geen {activeTab} gepland. Kom binnenkort terug
                 voor updates!
               </p>
@@ -197,7 +197,7 @@ function EventCard({
       onClick={onClick}
       className="w-full text-left group active:scale-[0.98] transition-transform"
     >
-      <div className="flex flex-col md:flex-row gap-4 md:gap-6 p-4 md:p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-[#c9a050]/30 hover:bg-white/[0.07] transition-all duration-300">
+      <div className="flex flex-col md:flex-row gap-4 md:gap-6 p-4 md:p-6 rounded-2xl bg-white border border-gray-100 hover:border-[#c9a050]/30 hover:shadow-lg transition-all duration-300">
         {/* Image */}
         <div className="relative w-full md:w-36 h-28 md:h-24 rounded-xl overflow-hidden flex-shrink-0">
           <Image
@@ -210,10 +210,10 @@ function EventCard({
 
         {/* Content */}
         <div className="flex-1 min-w-0">
-          <h3 className="font-heading text-base md:text-lg font-semibold text-white mb-2 group-hover:text-[#c9a050] transition-colors">
+          <h3 className="font-heading text-base md:text-lg font-semibold text-black mb-2 group-hover:text-[#c9a050] transition-colors">
             {event.titel}
           </h3>
-          <p className="text-white/60 text-sm mb-3 line-clamp-2">
+          <p className="text-gray-600 text-sm mb-3 line-clamp-2">
             {event.beschrijving}
           </p>
 
@@ -222,7 +222,7 @@ function EventCard({
               <Calendar className="w-3.5 h-3.5 md:w-4 md:h-4" />
               <span>{formatDate(event.datum)}</span>
             </div>
-            <div className="flex items-center gap-1.5 text-white/50">
+            <div className="flex items-center gap-1.5 text-gray-500">
               <Clock className="w-3.5 h-3.5 md:w-4 md:h-4" />
               <span>{formatTime(event.datum)}</span>
             </div>

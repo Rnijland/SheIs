@@ -59,17 +59,17 @@ export function Services() {
                 transition={{ duration: 0.4, delay: index * 0.1 }}
                 className="group"
               >
-                <div className="h-full p-5 md:p-8 rounded-2xl border border-gray-200 bg-white hover:border-[#c9a050]/50 hover:shadow-lg hover:shadow-[#c9a050]/5 active:scale-[0.98] transition-all duration-300">
+                <div className="h-full p-5 md:p-8 rounded-2xl border border-[#1a3a4a] bg-[#1a3a4a] hover:bg-[#244a5a] active:scale-[0.98] transition-all duration-300">
                   {/* Icon */}
-                  <div className="w-12 h-12 md:w-14 md:h-14 rounded-xl bg-[#c9a050]/10 flex items-center justify-center mb-4 md:mb-6 group-hover:bg-[#c9a050]/20 transition-colors">
-                    <Icon className="w-6 h-6 md:w-7 md:h-7 text-[#c9a050]" />
+                  <div className="w-12 h-12 md:w-14 md:h-14 rounded-xl bg-[#c9a050] flex items-center justify-center mb-4 md:mb-6">
+                    <Icon className="w-6 h-6 md:w-7 md:h-7 text-white" />
                   </div>
 
                   {/* Content */}
-                  <h3 className="font-heading text-lg md:text-xl font-semibold text-black mb-2 md:mb-3">
+                  <h3 className="font-heading text-lg md:text-xl font-semibold text-white mb-2 md:mb-3">
                     {service.titel}
                   </h3>
-                  <p className="text-gray-600 leading-relaxed text-sm md:text-base">
+                  <p className="text-white/80 leading-relaxed text-sm md:text-base">
                     {service.beschrijving}
                   </p>
                 </div>
@@ -92,14 +92,14 @@ export function Services() {
                 const service = services[4];
                 const Icon = iconMap[service.icon] || Heart;
                 return (
-                  <div className="group h-full p-5 md:p-8 rounded-2xl border border-gray-200 bg-white hover:border-[#c9a050]/50 hover:shadow-lg hover:shadow-[#c9a050]/5 active:scale-[0.98] transition-all duration-300">
-                    <div className="w-12 h-12 md:w-14 md:h-14 rounded-xl bg-[#c9a050]/10 flex items-center justify-center mb-4 md:mb-6 group-hover:bg-[#c9a050]/20 transition-colors">
-                      <Icon className="w-6 h-6 md:w-7 md:h-7 text-[#c9a050]" />
+                  <div className="group h-full p-5 md:p-8 rounded-2xl border border-[#1a3a4a] bg-[#1a3a4a] hover:bg-[#244a5a] active:scale-[0.98] transition-all duration-300">
+                    <div className="w-12 h-12 md:w-14 md:h-14 rounded-xl bg-[#c9a050] flex items-center justify-center mb-4 md:mb-6">
+                      <Icon className="w-6 h-6 md:w-7 md:h-7 text-white" />
                     </div>
-                    <h3 className="font-heading text-lg md:text-xl font-semibold text-black mb-2 md:mb-3">
+                    <h3 className="font-heading text-lg md:text-xl font-semibold text-white mb-2 md:mb-3">
                       {service.titel}
                     </h3>
-                    <p className="text-gray-600 leading-relaxed text-sm md:text-base">
+                    <p className="text-white/80 leading-relaxed text-sm md:text-base">
                       {service.beschrijving}
                     </p>
                   </div>

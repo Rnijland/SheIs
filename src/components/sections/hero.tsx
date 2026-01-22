@@ -24,13 +24,13 @@ export function Hero() {
   return (
     <section
       id="home"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#0a0a0a]"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#0f2a36]"
     >
       {/* Video Background */}
       <div className="absolute inset-0">
         {/* Loading indicator */}
         {!videoLoaded && !videoError && (
-          <div className="absolute inset-0 flex items-center justify-center bg-[#0a0a0a] z-10">
+          <div className="absolute inset-0 flex items-center justify-center bg-[#0f2a36] z-10">
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -70,9 +70,9 @@ export function Hero() {
           />
         )}
 
-        {/* Gradient overlays for smooth transitions */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-black/80" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent" />
+        {/* Gradient overlays with teal tint */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#1a3a4a]/80 via-[#1a3a4a]/50 to-[#1a3a4a]/90" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0f2a36] via-transparent to-transparent" />
       </div>
 
       {/* Content */}

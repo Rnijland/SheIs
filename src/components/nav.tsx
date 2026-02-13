@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { navItems, siteConfig } from "@/data/site";
 import { cn } from "@/lib/utils";
 import { motion, AnimatePresence } from "motion/react";
-import { Menu, X, Phone } from "lucide-react";
+import { Menu, X, MessageCircle } from "lucide-react";
 import Image from "next/image";
 
 export function Nav() {
@@ -76,11 +76,13 @@ export function Nav() {
             {/* CTA Button */}
             <div className="hidden md:block">
               <a
-                href={`tel:${siteConfig.contact.telefoon}`}
+                href={`https://wa.me/${siteConfig.contact.whatsapp.replace(/[^0-9]/g, '')}?text=${encodeURIComponent('Hallo, ik wil graag meer informatie.')}`}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#c9a050] text-black text-sm font-semibold hover:bg-[#d4af37] transition-colors"
               >
-                <Phone className="w-4 h-4" />
-                Hulp Nodig?
+                <MessageCircle className="w-4 h-4" />
+                WhatsApp Ons
               </a>
             </div>
 
@@ -134,11 +136,13 @@ export function Nav() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: navItems.length * 0.1 }}
-                href={`tel:${siteConfig.contact.telefoon}`}
+                href={`https://wa.me/${siteConfig.contact.whatsapp.replace(/[^0-9]/g, '')}?text=${encodeURIComponent('Hallo, ik wil graag meer informatie.')}`}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="mt-4 inline-flex items-center gap-2 px-8 py-4 rounded-full bg-[#c9a050] text-black text-lg font-semibold"
               >
-                <Phone className="w-5 h-5" />
-                Bel Nu
+                <MessageCircle className="w-5 h-5" />
+                WhatsApp Ons
               </motion.a>
             </nav>
           </motion.div>

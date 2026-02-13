@@ -238,41 +238,40 @@ export function Contact() {
             </a>
 
             {/* Contact Info Cards - Fully clickable on mobile */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4">
+            <div className="grid grid-cols-3 gap-2 md:gap-4">
               <a
                 href={`tel:${siteConfig.contact.telefoon}`}
-                className="block p-4 md:p-5 rounded-xl bg-[#1a3a4a] border border-[#1a3a4a] hover:bg-[#244a5a] active:scale-[0.98] transition-all"
+                className="block p-3 md:p-5 rounded-xl bg-[#1a3a4a] border border-[#1a3a4a] hover:bg-[#244a5a] active:scale-[0.98] transition-all"
               >
-                <div className="w-10 h-10 rounded-lg bg-[#c9a050] flex items-center justify-center mb-3">
-                  <Phone className="w-5 h-5 text-white" />
+                <div className="w-8 h-8 md:w-10 md:h-10 rounded-lg bg-[#c9a050] flex items-center justify-center mb-2 md:mb-3">
+                  <Phone className="w-4 h-4 md:w-5 md:h-5 text-white" />
                 </div>
-                <h4 className="font-semibold text-white mb-1 text-sm md:text-base">Telefoon</h4>
-                <span className="text-[#c9a050] text-sm md:text-base">
+                <h4 className="font-semibold text-white mb-1 text-xs md:text-base">Telefoon</h4>
+                <span className="text-[#c9a050] text-xs md:text-base">
                   {siteConfig.contact.telefoon.replace("+31", "06-")}
                 </span>
               </a>
 
               <a
                 href={`mailto:${siteConfig.contact.email}`}
-                className="block p-4 md:p-5 rounded-xl bg-[#1a3a4a] border border-[#1a3a4a] hover:bg-[#244a5a] active:scale-[0.98] transition-all"
+                className="block p-3 md:p-5 rounded-xl bg-[#1a3a4a] border border-[#1a3a4a] hover:bg-[#244a5a] active:scale-[0.98] transition-all"
               >
-                <div className="w-10 h-10 rounded-lg bg-[#c9a050] flex items-center justify-center mb-3">
-                  <Mail className="w-5 h-5 text-white" />
+                <div className="w-8 h-8 md:w-10 md:h-10 rounded-lg bg-[#c9a050] flex items-center justify-center mb-2 md:mb-3">
+                  <Mail className="w-4 h-4 md:w-5 md:h-5 text-white" />
                 </div>
-                <h4 className="font-semibold text-white mb-1 text-sm md:text-base">E-mail</h4>
-                <span className="text-[#c9a050] text-sm md:text-base break-all">
+                <h4 className="font-semibold text-white mb-1 text-xs md:text-base">E-mail</h4>
+                <span className="text-[#c9a050] text-xs md:text-base break-all">
                   {siteConfig.contact.email}
                 </span>
               </a>
-            </div>
 
-            {/* Location Info */}
-            <div className="p-4 md:p-5 rounded-xl bg-[#1a3a4a] border border-[#1a3a4a]">
-              <div className="w-10 h-10 rounded-lg bg-[#c9a050] flex items-center justify-center mb-3">
-                <MapPin className="w-5 h-5 text-white" />
+              <div className="p-3 md:p-5 rounded-xl bg-[#1a3a4a] border border-[#1a3a4a]">
+                <div className="w-8 h-8 md:w-10 md:h-10 rounded-lg bg-[#c9a050] flex items-center justify-center mb-2 md:mb-3">
+                  <MapPin className="w-4 h-4 md:w-5 md:h-5 text-white" />
+                </div>
+                <h4 className="font-semibold text-white mb-1 text-xs md:text-base">Locatie</h4>
+                <p className="text-white/80 text-xs md:text-base">{siteConfig.contact.adres}</p>
               </div>
-              <h4 className="font-semibold text-white mb-1 text-sm md:text-base">Locatie</h4>
-              <p className="text-white/80 text-sm md:text-base">{siteConfig.contact.adres}</p>
             </div>
           </motion.div>
         </div>

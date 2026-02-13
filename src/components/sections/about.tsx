@@ -14,7 +14,7 @@ export function About() {
     >
       {/* Subtle overlay to soften background pattern */}
       <div className="absolute inset-0 bg-[#1a3a4a]/60" />
-      <div className="relative container mx-auto px-6">
+      <div className="relative container mx-auto px-6 flex flex-col">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -31,42 +31,13 @@ export function About() {
           </p>
         </motion.div>
 
-        {/* Stats */}
+        {/* Founder Section - on mobile appears first */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6 mb-16 md:mb-20 max-w-3xl mx-auto"
-        >
-          {aboutContent.statistieken.map((stat, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: index * 0.1 }}
-              className="text-center py-8 px-4 rounded-2xl bg-white/95 border border-white/20 shadow-lg"
-            >
-              <div className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#c9a050] mb-2">
-                {typeof stat.waarde === "number" ? (
-                  <NumberTicker value={stat.waarde} suffix="+" delay={0.3} />
-                ) : (
-                  <span>{stat.waarde}</span>
-                )}
-              </div>
-              <div className="text-gray-600 font-medium text-sm md:text-base">{stat.label}</div>
-            </motion.div>
-          ))}
-        </motion.div>
-
-        {/* Founder Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          className="max-w-4xl mx-auto"
+          className="max-w-4xl mx-auto mb-8 md:mb-0 order-2 md:order-3"
         >
           <div className="bg-white/95 rounded-3xl p-6 md:p-8 lg:p-12 shadow-lg border border-white/20">
             <div className="flex flex-col md:flex-row gap-6 md:gap-8 items-center">
@@ -94,6 +65,35 @@ export function About() {
               </div>
             </div>
           </div>
+        </motion.div>
+
+        {/* Stats */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="grid grid-cols-3 gap-2 md:gap-6 max-w-3xl mx-auto order-3 md:order-2 md:mb-20"
+        >
+          {aboutContent.statistieken.map((stat, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: index * 0.1 }}
+              className="text-center py-8 px-4 rounded-2xl bg-white/95 border border-white/20 shadow-lg"
+            >
+              <div className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#c9a050] mb-2">
+                {typeof stat.waarde === "number" ? (
+                  <NumberTicker value={stat.waarde} suffix="+" delay={0.3} />
+                ) : (
+                  <span>{stat.waarde}</span>
+                )}
+              </div>
+              <div className="text-gray-600 font-medium text-sm md:text-base">{stat.label}</div>
+            </motion.div>
+          ))}
         </motion.div>
       </div>
     </section>

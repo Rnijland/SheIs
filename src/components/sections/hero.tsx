@@ -5,7 +5,7 @@ import { heroContent, siteConfig } from "@/data/site";
 import { ShimmerButton } from "@/components/magicui/shimmer-button";
 import { PulsatingButton } from "@/components/magicui/pulsating-button";
 import { motion } from "motion/react";
-import { Phone, ArrowDown, Loader2 } from "lucide-react";
+import { MessageCircle, ArrowDown, Loader2 } from "lucide-react";
 import Image from "next/image";
 
 export function Hero() {
@@ -24,7 +24,7 @@ export function Hero() {
   return (
     <section
       id="home"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#0f2a36]"
+      className="relative h-screen flex items-center justify-center overflow-hidden bg-[#0f2a36]"
     >
       {/* Video Background */}
       <div className="absolute inset-0">
@@ -76,56 +76,39 @@ export function Hero() {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 container mx-auto px-6 py-20 text-center">
-        {/* Logo */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="mb-12"
-        >
-          <Image
-            src="/logos/WhiteLogoHero.png"
-            alt="SHE - Stichting Human Empowerment"
-            width={280}
-            height={140}
-            className="mx-auto"
-            priority
-          />
-        </motion.div>
+      {/* Logo - absolute center of viewport */}
+      <motion.div
+        initial={{ opacity: 0, scale: 0.9 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        className="absolute top-[32%] left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 w-[120vw] sm:w-auto sm:max-w-[700px]"
+      >
+        <Image
+          src="/logos/logoshewhitewithsub.png"
+          alt="SHE - Stichting Human Empowerment"
+          width={700}
+          height={350}
+          className="mx-auto w-full h-auto"
+          priority
+        />
+      </motion.div>
 
-        {/* Main heading */}
-        <motion.h1
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.3 }}
-          className="font-heading text-3xl md:text-5xl lg:text-6xl font-semibold text-white mb-6 max-w-4xl mx-auto leading-tight"
-        >
-          {heroContent.titel}
-        </motion.h1>
-
-        {/* Subtitle */}
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.5 }}
-          className="max-w-2xl mx-auto text-lg md:text-xl text-white/70 mb-12"
-        >
-          {heroContent.subtitel}
-        </motion.p>
-
+      {/* Text content - bottom of viewport */}
+      <div className="absolute bottom-16 left-0 right-0 z-10 container mx-auto px-6 text-center">
         {/* CTA Buttons */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.7 }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-4"
+          className="flex flex-row items-center justify-center gap-3 mb-6"
         >
           <PulsatingButton
-            href={`tel:${siteConfig.contact.telefoon}`}
-            className="text-lg"
+            href={heroContent.cta.primary.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-base"
           >
-            <Phone className="w-5 h-5" />
+            <MessageCircle className="w-5 h-5" />
             {heroContent.cta.primary.text}
           </PulsatingButton>
 
@@ -141,12 +124,32 @@ export function Hero() {
           </ShimmerButton>
         </motion.div>
 
+        {/* Main heading */}
+        <motion.h1
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.3 }}
+          className="font-heading text-2xl md:text-4xl lg:text-5xl font-semibold text-white mb-6 max-w-4xl mx-auto leading-tight"
+        >
+          {heroContent.titel}
+        </motion.h1>
+
+        {/* Subtitle */}
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.5 }}
+          className="max-w-2xl mx-auto text-lg md:text-xl text-white/70 mb-6"
+        >
+          {heroContent.subtitel}
+        </motion.p>
+
         {/* 24/7 badge */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 1 }}
-          className="mt-16"
+          className="mt-6"
         >
           <span className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#c9a050]/20 border border-[#c9a050]/30 text-[#c9a050] text-sm font-medium">
             <span className="relative flex h-2 w-2">
@@ -157,22 +160,23 @@ export function Hero() {
           </span>
         </motion.div>
 
-        {/* Scroll indicator */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 1.2 }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2"
-        >
-          <motion.div
-            animate={{ y: [0, 8, 0] }}
-            transition={{ duration: 1.5, repeat: Infinity }}
-            className="text-white/40"
-          >
-            <ArrowDown className="w-6 h-6" />
-          </motion.div>
-        </motion.div>
       </div>
+
+      {/* Scroll indicator - on section */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1, delay: 1.2 }}
+        className="absolute bottom-4 left-1/2 -translate-x-1/2 z-10"
+      >
+        <motion.div
+          animate={{ y: [0, 8, 0] }}
+          transition={{ duration: 1.5, repeat: Infinity }}
+          className="text-white/40"
+        >
+          <ArrowDown className="w-6 h-6" />
+        </motion.div>
+      </motion.div>
     </section>
   );
 }

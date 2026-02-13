@@ -325,6 +325,16 @@
   animation: marquee-vertical var(--duration, 40s) linear infinite;
 }
 
+
+/* Hide scrollbar for slider */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
 /* Font classes */
 .font-heading {
   font-family: var(--font-heading), serif;

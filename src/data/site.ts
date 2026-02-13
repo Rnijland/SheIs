@@ -25,8 +25,8 @@ export const heroContent: HeroContent = {
     "Stichting Human Empowerment biedt ondersteuning aan vrouwen, mannen en jongeren die te maken hebben met huiselijk geweld en kindermishandeling. 24/7 bereikbaar.",
   cta: {
     primary: {
-      text: "Hulp Nodig? Bel Nu",
-      href: "tel:+31630340794",
+      text: "Hulp Nodig?",
+      href: "https://wa.me/31630340794?text=Hallo%2C%20ik%20wil%20graag%20meer%20informatie.",
     },
     secondary: {
       text: "Meer Informatie",

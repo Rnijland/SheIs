@@ -9,15 +9,15 @@ export function Footer() {
 
   return (
     <footer
-      className="relative bg-[#0a0a0a] text-white py-12 md:py-16"
+      className="relative bg-[#0f2a36] text-white py-8 md:py-16"
       style={{ backgroundImage: "url('/bgGreen.jpg')", backgroundSize: "cover", backgroundPosition: "bottom" }}
     >
-      {/* Subtle overlay to soften background pattern */}
-      <div className="absolute inset-0 bg-[#0a0a0a]/70" />
+      {/* Subtle overlay with green accent */}
+      <div className="absolute inset-0 bg-[#0f2a36]/70" />
       <div className="relative container mx-auto px-4 md:px-6">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-10 md:gap-12">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-12">
           {/* Brand */}
-          <div className="md:col-span-2 text-center md:text-left">
+          <div className="col-span-2 text-center md:text-left">
             <Image
               src="/logos/WhiteLogoHero.png"
               alt="SHE - Stichting Human Empowerment"
@@ -25,7 +25,7 @@ export function Footer() {
               height={50}
               className="mb-5 md:mb-6 mx-auto md:mx-0"
             />
-            <p className="text-white/70 mb-5 md:mb-6 max-w-md leading-relaxed text-sm md:text-base mx-auto md:mx-0">
+            <p className="text-white/70 mb-3 md:mb-6 max-w-md leading-relaxed text-xs md:text-base mx-auto md:mx-0">
               Stichting Human Empowerment biedt ondersteuning aan vrouwen,
               mannen en jongeren die te maken hebben met huiselijk geweld en
               kindermishandeling.
@@ -61,28 +61,30 @@ export function Footer() {
           {/* Contact */}
           <div className="text-center md:text-left">
             <h4 className="font-semibold text-base md:text-lg mb-4 text-white">Contact</h4>
-            <ul className="space-y-2 md:space-y-3">
+            <ul className="space-y-2 md:space-y-3 inline-block text-left">
               <li>
                 <a
                   href={`tel:${siteConfig.contact.telefoon}`}
-                  className="inline-flex items-center gap-2 text-white/60 hover:text-[#c9a050] transition-colors text-sm md:text-base"
+                  className="flex items-center gap-2 text-white/60 hover:text-[#c9a050] transition-colors text-sm md:text-base"
                 >
-                  <Phone className="w-4 h-4" />
+                  <Phone className="w-4 h-4 flex-shrink-0" />
                   {siteConfig.contact.telefoon.replace("+31", "06-")}
                 </a>
               </li>
               <li>
                 <a
                   href={`mailto:${siteConfig.contact.email}`}
-                  className="inline-flex items-center gap-2 text-white/60 hover:text-[#c9a050] transition-colors text-sm md:text-base"
+                  className="flex items-center gap-2 text-white/60 hover:text-[#c9a050] transition-colors text-sm md:text-base"
                 >
-                  <Mail className="w-4 h-4" />
+                  <Mail className="w-4 h-4 flex-shrink-0" />
                   {siteConfig.contact.email}
                 </a>
               </li>
-              <li className="inline-flex items-center gap-2 text-white/60 text-sm md:text-base">
-                <MapPin className="w-4 h-4 flex-shrink-0" />
-                <span>{siteConfig.contact.adres}</span>
+              <li>
+                <span className="flex items-center gap-2 text-white/60 text-sm md:text-base">
+                  <MapPin className="w-4 h-4 flex-shrink-0" />
+                  {siteConfig.contact.adres}
+                </span>
               </li>
             </ul>
 
@@ -126,7 +128,7 @@ export function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="mt-10 md:mt-12 pt-6 md:pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-3 md:gap-4 text-center">
+        <div className="mt-6 md:mt-12 pt-4 md:pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-2 md:gap-4 text-center">
           <p className="text-white/50 text-xs md:text-sm">
             &copy; {currentYear} Stichting Human Empowerment. Alle rechten
             voorbehouden.

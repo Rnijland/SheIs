@@ -310,10 +310,12 @@ function EventModal({
           {/* CTA */}
           <div className="flex flex-col sm:flex-row gap-3 md:gap-4">
             <a
-              href={`tel:+31630340794`}
+              href={`https://wa.me/31630340794?text=${encodeURIComponent('Hallo, ik wil graag aanmelden voor: ' + event.titel)}`}
+              target="_blank"
+              rel="noopener noreferrer"
               className="flex-1 text-center px-5 md:px-6 py-3 rounded-full bg-[#c9a050] text-black font-medium hover:bg-[#d4af37] active:scale-[0.98] transition-all text-sm md:text-base"
             >
-              Aanmelden
+              Aanmelden via WhatsApp
             </a>
             <button
               onClick={onClose}

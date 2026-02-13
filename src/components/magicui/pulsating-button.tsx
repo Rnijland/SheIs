@@ -10,6 +10,8 @@ interface PulsatingButtonProps {
   duration?: string;
   onClick?: () => void;
   href?: string;
+  target?: string;
+  rel?: string;
 }
 
 export function PulsatingButton({
@@ -19,6 +21,8 @@ export function PulsatingButton({
   duration = "1.5s",
   onClick,
   href,
+  target,
+  rel,
 }: PulsatingButtonProps) {
   const Component = href ? "a" : "button";
 
@@ -26,9 +30,11 @@ export function PulsatingButton({
     <Component
       href={href}
       onClick={onClick}
+      target={href ? target : undefined}
+      rel={href ? rel : undefined}
       className={cn(
         "relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-full",
-        "bg-accent px-8 py-4 font-semibold text-accent-foreground",
+        "bg-accent px-6 py-3 font-semibold text-accent-foreground",
         "transition-transform duration-300 hover:scale-105 active:scale-95",
         className
       )}

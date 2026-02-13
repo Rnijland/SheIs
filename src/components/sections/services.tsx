@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useRef, useCallback } from "react";
 import { services } from "@/data/site";
 import { motion } from "motion/react";
 import {
@@ -8,6 +9,8 @@ import {
   BookOpen,
   Phone,
   MessageCircle,
+  ChevronLeft,
+  ChevronRight,
   LucideIcon,
 } from "lucide-react";
 
@@ -19,7 +22,27 @@ const iconMap: Record<string, LucideIcon> = {
   MessageCircle,
 };
 
+// Split services into pages of 3
+const mobilePages = [services.slice(0, 3), services.slice(3)];
+
 export function Services() {
+  const [activePage, setActivePage] = useState(0);
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  const handleScroll = useCallback(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+    const page = Math.round(el.scrollLeft / el.clientWidth);
+    setActivePage(page);
+  }, []);
+
+  const goToPage = useCallback((page: number) => {
+    const el = scrollRef.current;
+    if (!el) return;
+    el.scrollTo({ left: page * el.clientWidth, behavior: "smooth" });
+    setActivePage(page);
+  }, []);
+
   return (
     <section
       id="diensten"
@@ -46,8 +69,82 @@ export function Services() {
           </p>
         </motion.div>
 
-        {/* Services Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 max-w-5xl mx-auto">
+        {/* Services - Mobile: swipeable pages of stacked cards with dots */}
+        <div className="md:hidden">
+          <div
+            ref={scrollRef}
+            onScroll={handleScroll}
+            className="overflow-x-auto snap-x snap-mandatory scrollbar-hide"
+          >
+            <div className="flex" style={{ width: `${mobilePages.length * 100}%` }}>
+              {mobilePages.map((page, pageIndex) => (
+                <div
+                  key={pageIndex}
+                  className="snap-start flex-shrink-0 px-4 space-y-3"
+                  style={{ width: `${100 / mobilePages.length}%` }}
+                >
+                  {page.map((service, index) => {
+                    const Icon = iconMap[service.icon] || Heart;
+                    return (
+                      <div
+                        key={service.id}
+                        className="p-5 rounded-2xl border border-[#1a3a4a] bg-[#1a3a4a]"
+                      >
+                        <div className="w-12 h-12 rounded-xl bg-[#c9a050] flex items-center justify-center mb-4">
+                          <Icon className="w-6 h-6 text-white" />
+                        </div>
+                        <h3 className="font-heading text-lg font-semibold text-white mb-2">
+                          {service.titel}
+                        </h3>
+                        <p className="text-white/80 leading-relaxed text-sm">
+                          {service.beschrijving}
+                        </p>
+                      </div>
+                    );
+                  })}
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Page indicator dots with arrows */}
+          <div className="flex items-center justify-center gap-3 mt-4">
+            <button
+              onClick={() => goToPage(Math.max(0, activePage - 1))}
+              className={`w-8 h-8 rounded-full flex items-center justify-center transition-all ${
+                activePage === 0 ? "bg-gray-200 text-gray-400" : "bg-[#c9a050]/20 text-[#c9a050]"
+              }`}
+              disabled={activePage === 0}
+            >
+              <ChevronLeft className="w-4 h-4" />
+            </button>
+            <div className="flex gap-2">
+              {mobilePages.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => goToPage(index)}
+                  className={`h-2.5 rounded-full transition-all ${
+                    activePage === index
+                      ? "bg-[#c9a050] w-6"
+                      : "bg-gray-300 w-2.5"
+                  }`}
+                />
+              ))}
+            </div>
+            <button
+              onClick={() => goToPage(Math.min(mobilePages.length - 1, activePage + 1))}
+              className={`w-8 h-8 rounded-full flex items-center justify-center transition-all ${
+                activePage === mobilePages.length - 1 ? "bg-gray-200 text-gray-400" : "bg-[#c9a050]/20 text-[#c9a050]"
+              }`}
+              disabled={activePage === mobilePages.length - 1}
+            >
+              <ChevronRight className="w-4 h-4" />
+            </button>
+          </div>
+        </div>
+
+        {/* Desktop grid */}
+        <div className="hidden md:grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
           {services.slice(0, 4).map((service, index) => {
             const Icon = iconMap[service.icon] || Heart;
             return (
@@ -59,17 +156,14 @@ export function Services() {
                 transition={{ duration: 0.4, delay: index * 0.1 }}
                 className="group"
               >
-                <div className="h-full p-5 md:p-8 rounded-2xl border border-[#1a3a4a] bg-[#1a3a4a] hover:bg-[#244a5a] active:scale-[0.98] transition-all duration-300">
-                  {/* Icon */}
-                  <div className="w-12 h-12 md:w-14 md:h-14 rounded-xl bg-[#c9a050] flex items-center justify-center mb-4 md:mb-6">
-                    <Icon className="w-6 h-6 md:w-7 md:h-7 text-white" />
+                <div className="h-full p-8 rounded-2xl border border-[#1a3a4a] bg-[#1a3a4a] hover:bg-[#244a5a] active:scale-[0.98] transition-all duration-300">
+                  <div className="w-14 h-14 rounded-xl bg-[#c9a050] flex items-center justify-center mb-6">
+                    <Icon className="w-7 h-7 text-white" />
                   </div>
-
-                  {/* Content */}
-                  <h3 className="font-heading text-lg md:text-xl font-semibold text-white mb-2 md:mb-3">
+                  <h3 className="font-heading text-xl font-semibold text-white mb-3">
                     {service.titel}
                   </h3>
-                  <p className="text-white/80 leading-relaxed text-sm md:text-base">
+                  <p className="text-white/80 leading-relaxed text-base">
                     {service.beschrijving}
                   </p>
                 </div>
@@ -78,28 +172,28 @@ export function Services() {
           })}
         </div>
 
-        {/* Fifth service - centered */}
+        {/* Fifth service - desktop only, centered */}
         {services.length > 4 && (
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-30px" }}
             transition={{ duration: 0.4, delay: 0.4 }}
-            className="mt-4 md:mt-6 max-w-5xl mx-auto"
+            className="hidden md:block mt-6 max-w-5xl mx-auto"
           >
-            <div className="md:max-w-[calc(50%-12px)] md:mx-auto">
+            <div className="max-w-[calc(50%-12px)] mx-auto">
               {(() => {
                 const service = services[4];
                 const Icon = iconMap[service.icon] || Heart;
                 return (
-                  <div className="group h-full p-5 md:p-8 rounded-2xl border border-[#1a3a4a] bg-[#1a3a4a] hover:bg-[#244a5a] active:scale-[0.98] transition-all duration-300">
-                    <div className="w-12 h-12 md:w-14 md:h-14 rounded-xl bg-[#c9a050] flex items-center justify-center mb-4 md:mb-6">
-                      <Icon className="w-6 h-6 md:w-7 md:h-7 text-white" />
+                  <div className="group h-full p-8 rounded-2xl border border-[#1a3a4a] bg-[#1a3a4a] hover:bg-[#244a5a] active:scale-[0.98] transition-all duration-300">
+                    <div className="w-14 h-14 rounded-xl bg-[#c9a050] flex items-center justify-center mb-6">
+                      <Icon className="w-7 h-7 text-white" />
                     </div>
-                    <h3 className="font-heading text-lg md:text-xl font-semibold text-white mb-2 md:mb-3">
+                    <h3 className="font-heading text-xl font-semibold text-white mb-3">
                       {service.titel}
                     </h3>
-                    <p className="text-white/80 leading-relaxed text-sm md:text-base">
+                    <p className="text-white/80 leading-relaxed text-base">
                       {service.beschrijving}
                     </p>
                   </div>

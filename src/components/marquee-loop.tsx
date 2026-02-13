@@ -19,12 +19,20 @@ export function MarqueeLoop({
   const id = `mq-${images.length}-${direction}`;
 
   const css = `
+@-webkit-keyframes ${id} {
+  0% { -webkit-transform: translateX(0); transform: translateX(0); }
+  100% { -webkit-transform: translateX(-33.333%); transform: translateX(-33.333%); }
+}
 @keyframes ${id} {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-33.333%); }
+  0% { -webkit-transform: translateX(0); transform: translateX(0); }
+  100% { -webkit-transform: translateX(-33.333%); transform: translateX(-33.333%); }
 }
 .${id} {
+  -webkit-animation: ${id} ${duration}s linear infinite;
   animation: ${id} ${duration}s linear infinite;
+  will-change: transform;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
 }
 `;
 
@@ -40,6 +48,8 @@ export function MarqueeLoop({
               flexWrap: "nowrap",
               width: "max-content",
               gap: 0,
+              WebkitTransform: "translateZ(0)",
+              transform: "translateZ(0)",
             }}
           >
             {[0, 1, 2].map((set) =>

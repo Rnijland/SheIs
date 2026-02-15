@@ -8,6 +8,7 @@ export interface Event {
   locatie: string;
   afbeelding: string;
   actief: boolean;
+  tijd?: string;
 }
 
 export interface Workshop extends Event {

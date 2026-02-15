@@ -1,20 +1,162 @@
 [
   {
-    "id": "tr-001",
-    "titel": "Nieuwe Krachtvrouwen - Basiscursus",
-    "beschrijving": "De complete 8-weekse training om je eigen pijn te verwerken en anderen te leren ondersteunen. Inclusief certificaat.",
-    "datum": "2026-03-01T09:00:00.000Z",
+    "id": "tr-20260313",
+    "titel": "Kennismaking – Nieuwe Trainingen",
+    "beschrijving": "Een krachtige start waarin we ontdekken waar je nu staat, wie je bent en welke innerlijke kracht al aanwezig is.",
+    "datum": "2026-03-13T12:00:00.000Z",
+    "tijd": "12.00 – 15.00 uur",
     "locatie": "Amsterdam Zuidoost",
-    "afbeelding": "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=600&h=400&fit=crop",
+    "afbeelding": "https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?auto=format&fit=crop&w=1200&q=80",
     "actief": true
   },
   {
-    "id": "tr-002",
-    "titel": "Train de Trainer",
-    "beschrijving": "Voor ervaren krachtvrouwen die anderen willen begeleiden. Verdiepende training met supervisie.",
-    "datum": "2026-04-15T09:00:00.000Z",
-    "locatie": "Amsterdam",
-    "afbeelding": "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&h=400&fit=crop",
+    "id": "tr-20260321",
+    "titel": "Staan in je eigen Kracht",
+    "beschrijving": "Leren stevig te staan in je identiteit, keuzes en overtuigingen — zonder jezelf kleiner te maken.",
+    "datum": "2026-03-21T12:00:00.000Z",
+    "tijd": "12.00 – 15.00 uur",
+    "locatie": "Amsterdam Zuidoost",
+    "afbeelding": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=1200&q=80",
+    "actief": true
+  },
+  {
+    "id": "tr-20260410",
+    "titel": "Ontdek je Ware Stem",
+    "beschrijving": "Verkennen van je authentieke stem en leren hoe je jezelf helder en zelfverzekerd uitspreekt.",
+    "datum": "2026-04-10T12:00:00.000Z",
+    "tijd": "12.00 – 15.00 uur",
+    "locatie": "Amsterdam Zuidoost",
+    "afbeelding": "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=1200&q=80",
+    "actief": true
+  },
+  {
+    "id": "tr-20260417",
+    "titel": "De Nieuwe Powervrouwen",
+    "beschrijving": "Samen bouwen aan krachtig vrouwelijk leiderschap en onderlinge verbinding.",
+    "datum": "2026-04-17T12:00:00.000Z",
+    "tijd": "12.00 – 15.00 uur",
+    "locatie": "Amsterdam Zuidoost",
+    "afbeelding": "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=1200&q=80",
+    "actief": true
+  },
+  {
+    "id": "tr-20260508",
+    "titel": "Leiderschap van binnenuit",
+    "beschrijving": "Ontwikkelen van innerlijk leiderschap gebaseerd op zelfkennis, visie en waarden.",
+    "datum": "2026-05-08T12:00:00.000Z",
+    "tijd": "12.00 – 15.00 uur",
+    "locatie": "Amsterdam Zuidoost",
+    "afbeelding": "https://images.unsplash.com/photo-1515169067868-5387ec356754?auto=format&fit=crop&w=1200&q=80",
+    "actief": true
+  },
+  {
+    "id": "tr-20260522",
+    "titel": "Innerlijke Kracht! Uiterlijke Impact!",
+    "beschrijving": "Hoe je innerlijke overtuiging vertaalt naar zichtbare impact in werk en leven.",
+    "datum": "2026-05-22T12:00:00.000Z",
+    "tijd": "12.00 – 15.00 uur",
+    "locatie": "Amsterdam Zuidoost",
+    "afbeelding": "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=1200&q=80",
+    "actief": true
+  },
+  {
+    "id": "tr-20260612",
+    "titel": "Vrouw en Visie!",
+    "beschrijving": "Werken aan persoonlijke visie en toekomstgericht denken vanuit kracht en ambitie.",
+    "datum": "2026-06-12T12:00:00.000Z",
+    "tijd": "12.00 – 15.00 uur",
+    "locatie": "Amsterdam Zuidoost",
+    "afbeelding": "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=1200&q=80",
+    "actief": true
+  },
+  {
+    "id": "tr-20260619",
+    "titel": "Jezelf Krachtig Positioneren!",
+    "beschrijving": "Leren hoe je jezelf professioneel en persoonlijk zichtbaar en sterk neerzet.",
+    "datum": "2026-06-19T12:00:00.000Z",
+    "tijd": "12.00 – 15.00 uur",
+    "locatie": "Amsterdam Zuidoost",
+    "afbeelding": "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=1200&q=80",
+    "actief": true
+  },
+  {
+    "id": "tr-20260717",
+    "titel": "Spreken met Impact",
+    "beschrijving": "Technieken om overtuigend te communiceren en met vertrouwen een boodschap over te brengen.",
+    "datum": "2026-07-17T12:00:00.000Z",
+    "tijd": "12.00 – 15.00 uur",
+    "locatie": "Amsterdam Zuidoost",
+    "afbeelding": "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=80",
+    "actief": true
+  },
+  {
+    "id": "tr-20260814",
+    "titel": "Invloed zonder Machtsspel!",
+    "beschrijving": "Invloed uitoefenen op een authentieke manier, zonder manipulatie of machtsdynamiek.",
+    "datum": "2026-08-14T12:00:00.000Z",
+    "tijd": "12.00 – 15.00 uur",
+    "locatie": "Amsterdam Zuidoost",
+    "afbeelding": "https://images.unsplash.com/photo-1474631245212-32dc3c8310c6?auto=format&fit=crop&w=1200&q=80",
+    "actief": true
+  },
+  {
+    "id": "tr-20260911",
+    "titel": "Financieel Sterk",
+    "beschrijving": "Bewustwording rondom financiële zelfstandigheid, kracht en verantwoordelijkheid.",
+    "datum": "2026-09-11T12:00:00.000Z",
+    "tijd": "12.00 – 15.00 uur",
+    "locatie": "Amsterdam Zuidoost",
+    "afbeelding": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=1200&q=80",
+    "actief": true
+  },
+  {
+    "id": "tr-20260918",
+    "titel": "Schuldloos grenzen kunnen stellen!",
+    "beschrijving": "Grenzen aangeven zonder schuldgevoel of angst voor afwijzing.",
+    "datum": "2026-09-18T12:00:00.000Z",
+    "tijd": "12.00 – 15.00 uur",
+    "locatie": "Amsterdam Zuidoost",
+    "afbeelding": "https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=1200&q=80",
+    "actief": true
+  },
+  {
+    "id": "tr-20261023",
+    "titel": "(Thema volgt)",
+    "beschrijving": "Meer informatie over deze training wordt binnenkort bekendgemaakt.",
+    "datum": "2026-10-23T12:00:00.000Z",
+    "tijd": "12.00 – 15.00 uur",
+    "locatie": "Amsterdam Zuidoost",
+    "afbeelding": "https://images.unsplash.com/photo-1515169067868-5387ec356754?auto=format&fit=crop&w=1200&q=80",
+    "actief": true
+  },
+  {
+    "id": "tr-20261120",
+    "titel": "Effectief Communiceren!",
+    "beschrijving": "Praktische communicatietechnieken om helder, respectvol en doelgericht te communiceren.",
+    "datum": "2026-11-20T12:00:00.000Z",
+    "tijd": "12.00 – 15.00 uur",
+    "locatie": "Amsterdam Zuidoost",
+    "afbeelding": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=1200&q=80",
+    "actief": true
+  },
+  {
+    "id": "tr-20261127",
+    "titel": "Afronding met Lunch",
+    "beschrijving": "Een gezamenlijke afsluiting van het traject met reflectie, verbinding en viering.",
+    "datum": "2026-11-27T12:00:00.000Z",
+    "tijd": "12.00 – 15.00 uur",
+    "locatie": "Amsterdam Zuidoost",
+    "afbeelding": "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=1200&q=80",
+    "actief": true
+  },
+  {
+    "id": "tr-20261204",
+    "titel": "ORANGE THE WORLD!",
+    "beschrijving": "Een speciale bijeenkomst in het kader van Orange The World, gericht op bewustwording en maatschappelijke betrokkenheid.",
+    "datum": "2026-12-04T12:00:00.000Z",
+    "tijd": "12.00 – 16.00 uur",
+    "locatie": "Amsterdam Zuidoost",
+    "afbeelding": "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=1200&q=80",
     "actief": true
   }
 ]

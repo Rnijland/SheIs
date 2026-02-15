@@ -141,6 +141,15 @@
     @apply bg-background text-foreground;
   }
 
+  @media (max-width: 1024px) {
+    body {
+      overflow-x: hidden;
+    }
+    html {
+      overflow-x: hidden;
+    }
+  }
+
   /* Shiki dual theme support */
   .shiki,
   .shiki span {

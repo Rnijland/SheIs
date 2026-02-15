@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useCallback } from "react";
+import { useState, useCallback, useMemo } from "react";
 import { services } from "@/data/site";
 import { motion } from "motion/react";
 import {
@@ -22,26 +22,44 @@ const iconMap: Record<string, LucideIcon> = {
   MessageCircle,
 };
 
-// Split services into pages of 3
-const mobilePages = [services.slice(0, 3), services.slice(3)];
-
 export function Services() {
+  const mobilePages = useMemo(() => {
+    const chunkSize = 2;
+    const chunks = [];
+    for (let i = 0; i < services.length; i += chunkSize) {
+      chunks.push(services.slice(i, i + chunkSize));
+    }
+    return chunks.length > 0 ? chunks : [services];
+  }, []);
+
+  const totalMobilePages = mobilePages.length;
   const [activePage, setActivePage] = useState(0);
-  const scrollRef = useRef<HTMLDivElement>(null);
 
-  const handleScroll = useCallback(() => {
-    const el = scrollRef.current;
-    if (!el) return;
-    const page = Math.round(el.scrollLeft / el.clientWidth);
-    setActivePage(page);
-  }, []);
+  const goToPage = useCallback(
+    (page: number) => {
+      if (!totalMobilePages) return;
+      const next = ((page % totalMobilePages) + totalMobilePages) % totalMobilePages;
+      setActivePage(next);
+    },
+    [totalMobilePages],
+  );
 
-  const goToPage = useCallback((page: number) => {
-    const el = scrollRef.current;
-    if (!el) return;
-    el.scrollTo({ left: page * el.clientWidth, behavior: "smooth" });
-    setActivePage(page);
-  }, []);
+  const goToWrappedPage = useCallback(
+    (offset: number) => {
+      goToPage(activePage + offset);
+    },
+    [activePage, goToPage],
+  );
+
+  const currentServices = useMemo(() => mobilePages[activePage] ?? [], [mobilePages, activePage]);
+  const paddedServices = useMemo(() => {
+    const maxVisible = 2;
+    const entries: (typeof services[number] | null)[] = [...currentServices];
+    while (entries.length < maxVisible) {
+      entries.push(null);
+    }
+    return entries;
+  }, [currentServices]);
 
   return (
     <section
@@ -71,50 +89,36 @@ export function Services() {
 
         {/* Services - Mobile: swipeable pages of stacked cards with dots */}
         <div className="md:hidden">
-          <div
-            ref={scrollRef}
-            onScroll={handleScroll}
-            className="overflow-x-auto snap-x snap-mandatory scrollbar-hide"
-          >
-            <div className="flex" style={{ width: `${mobilePages.length * 100}%` }}>
-              {mobilePages.map((page, pageIndex) => (
-                <div
-                  key={pageIndex}
-                  className="snap-start flex-shrink-0 px-4 space-y-3"
-                  style={{ width: `${100 / mobilePages.length}%` }}
-                >
-                  {page.map((service, index) => {
-                    const Icon = iconMap[service.icon] || Heart;
-                    return (
-                      <div
-                        key={service.id}
-                        className="p-5 rounded-2xl border border-[#1a3a4a] bg-[#1a3a4a]"
-                      >
-                        <div className="w-12 h-12 rounded-xl bg-[#c9a050] flex items-center justify-center mb-4">
-                          <Icon className="w-6 h-6 text-white" />
-                        </div>
-                        <h3 className="font-heading text-lg font-semibold text-white mb-2">
-                          {service.titel}
-                        </h3>
-                        <p className="text-white/80 leading-relaxed text-sm">
-                          {service.beschrijving}
-                        </p>
-                      </div>
-                    );
-                  })}
+          <div className="px-4 space-y-3">
+            {paddedServices.map((service, index) => {
+              if (!service) {
+                return (
+                  <div
+                    key={`placeholder-${index}`}
+                    aria-hidden="true"
+                    className="p-5 rounded-2xl border border-transparent bg-transparent opacity-0 pointer-events-none min-h-[260px]"
+                  />
+                );
+              }
+
+              const Icon = iconMap[service.icon] || Heart;
+              return (
+                <div key={service.id} className="p-5 rounded-2xl border border-[#1a3a4a] bg-[#1a3a4a] min-h-[260px] flex flex-col gap-3">
+                  <div className="w-12 h-12 rounded-xl bg-[#c9a050] flex items-center justify-center">
+                    <Icon className="w-6 h-6 text-white" />
+                  </div>
+                  <h3 className="font-heading text-lg font-semibold text-white">{service.titel}</h3>
+                  <p className="text-white/80 leading-relaxed text-sm flex-1">{service.beschrijving}</p>
                 </div>
-              ))}
-            </div>
+              );
+            })}
           </div>
 
           {/* Page indicator dots with arrows */}
           <div className="flex items-center justify-center gap-3 mt-4">
             <button
-              onClick={() => goToPage(Math.max(0, activePage - 1))}
-              className={`w-8 h-8 rounded-full flex items-center justify-center transition-all ${
-                activePage === 0 ? "bg-gray-200 text-gray-400" : "bg-[#c9a050]/20 text-[#c9a050]"
-              }`}
-              disabled={activePage === 0}
+              onClick={() => goToWrappedPage(-1)}
+              className="w-8 h-8 rounded-full flex items-center justify-center transition-all bg-[#c9a050]/20 text-[#c9a050]"
             >
               <ChevronLeft className="w-4 h-4" />
             </button>
@@ -132,11 +136,8 @@ export function Services() {
               ))}
             </div>
             <button
-              onClick={() => goToPage(Math.min(mobilePages.length - 1, activePage + 1))}
-              className={`w-8 h-8 rounded-full flex items-center justify-center transition-all ${
-                activePage === mobilePages.length - 1 ? "bg-gray-200 text-gray-400" : "bg-[#c9a050]/20 text-[#c9a050]"
-              }`}
-              disabled={activePage === mobilePages.length - 1}
+              onClick={() => goToWrappedPage(1)}
+              className="w-8 h-8 rounded-full flex items-center justify-center transition-all bg-[#c9a050]/20 text-[#c9a050]"
             >
               <ChevronRight className="w-4 h-4" />
             </button>
@@ -145,7 +146,7 @@ export function Services() {
 
         {/* Desktop grid */}
         <div className="hidden md:grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
-          {services.slice(0, 4).map((service, index) => {
+          {services.slice(0, 2).map((service, index) => {
             const Icon = iconMap[service.icon] || Heart;
             return (
               <motion.div
@@ -172,34 +173,32 @@ export function Services() {
           })}
         </div>
 
-        {/* Fifth service - desktop only, centered */}
-        {services.length > 4 && (
+        {/* Additional services - desktop */}
+        {services.length > 2 && (
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-30px" }}
             transition={{ duration: 0.4, delay: 0.4 }}
-            className="hidden md:block mt-6 max-w-5xl mx-auto"
+            className="hidden md:grid md:grid-cols-2 gap-6 mt-6 max-w-5xl mx-auto"
           >
-            <div className="max-w-[calc(50%-12px)] mx-auto">
-              {(() => {
-                const service = services[4];
-                const Icon = iconMap[service.icon] || Heart;
-                return (
-                  <div className="group h-full p-8 rounded-2xl border border-[#1a3a4a] bg-[#1a3a4a] hover:bg-[#244a5a] active:scale-[0.98] transition-all duration-300">
-                    <div className="w-14 h-14 rounded-xl bg-[#c9a050] flex items-center justify-center mb-6">
-                      <Icon className="w-7 h-7 text-white" />
-                    </div>
-                    <h3 className="font-heading text-xl font-semibold text-white mb-3">
-                      {service.titel}
-                    </h3>
-                    <p className="text-white/80 leading-relaxed text-base">
-                      {service.beschrijving}
-                    </p>
+            {services.slice(2, 4).map((service, index) => {
+              const Icon = iconMap[service.icon] || Heart;
+              return (
+                <div
+                  key={service.id}
+                  className="group h-full p-8 rounded-2xl border border-[#1a3a4a] bg-[#1a3a4a] hover:bg-[#244a5a] active:scale-[0.98] transition-all duration-300"
+                >
+                  <div className="w-14 h-14 rounded-xl bg-[#c9a050] flex items-center justify-center mb-6">
+                    <Icon className="w-7 h-7 text-white" />
                   </div>
-                );
-              })()}
-            </div>
+                  <h3 className="font-heading text-xl font-semibold text-white mb-3">
+                    {service.titel}
+                  </h3>
+                  <p className="text-white/80 leading-relaxed text-base">{service.beschrijving}</p>
+                </div>
+              );
+            })}
           </motion.div>
         )}
         </div>

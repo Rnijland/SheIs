@@ -51,20 +51,20 @@ function CalendarView({
     <div className="bg-white/5 border border-white/10 rounded-3xl p-4 md:p-6">
       <div className="flex flex-col items-center text-center gap-3 mb-6">
         <p className="text-white/60 text-sm uppercase tracking-wide">Maandoverzicht</p>
-        <div className="flex items-center gap-3">
+        <div className="flex items-center justify-center gap-4 w-full max-w-lg">
           <button
             onClick={() => onNavigate(-1)}
-            className="w-10 h-10 rounded-full flex items-center justify-center border border-[#c9a050]/40 text-[#c9a050] hover:bg-[#c9a050]/10 transition"
+            className="w-10 h-10 rounded-full flex items-center justify-center border border-[#c9a050]/40 text-[#c9a050] hover:bg-[#c9a050]/10 transition flex-shrink-0"
             aria-label="Vorige maand"
           >
             <ChevronLeft className="w-5 h-5" />
           </button>
-          <h3 className="text-2xl md:text-3xl font-heading font-semibold text-white capitalize">
+          <h3 className="flex-1 text-2xl md:text-3xl font-heading font-semibold text-white capitalize text-center">
             {monthName}
           </h3>
           <button
             onClick={() => onNavigate(1)}
-            className="w-10 h-10 rounded-full flex items-center justify-center border border-[#c9a050]/40 text-[#c9a050] hover:bg-[#c9a050]/10 transition"
+            className="w-10 h-10 rounded-full flex items-center justify-center border border-[#c9a050]/40 text-[#c9a050] hover:bg-[#c9a050]/10 transition flex-shrink-0"
             aria-label="Volgende maand"
           >
             <ChevronRight className="w-5 h-5" />
@@ -72,58 +72,75 @@ function CalendarView({
         </div>
       </div>
 
-      {monthEvents.length === 0 ? (
-        <div className="text-center py-12 text-white/60 text-sm md:text-base">
-          Geen activiteiten gepland in deze maand.
+      <div className="min-h-[420px] flex flex-col">
+        {monthEvents.length === 0 ? (
+          <div className="text-center py-12 text-white/60 text-sm md:text-base flex-1">
+            Geen activiteiten gepland in deze maand.
+          </div>
+        ) : (
+          <div className="grid gap-4 md:gap-5 md:grid-cols-2 flex-1">
+            {monthEvents.map((event) => {
+              const meta = categoryMeta[event.category];
+              const date = new Date(event.datum).toLocaleDateString("nl-NL", {
+                day: "numeric",
+                month: "long",
+              });
+
+              return (
+                <button
+                  key={event.id}
+                  onClick={() => onSelect(event)}
+                  className="text-left rounded-2xl border border-white/10 bg-white/5 p-4 flex flex-col gap-3 hover:border-[#c9a050]/40 transition"
+                >
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2 text-xs uppercase tracking-wide text-white/70">
+                      <span className={`w-2.5 h-2.5 rounded-full ${meta.dot}`} />
+                      {meta.label}
+                    </div>
+                    <span className="text-white/60 text-sm">{date}</span>
+                  </div>
+
+                  <div>
+                    <h4 className="text-white font-semibold text-base line-clamp-2">{event.titel}</h4>
+                    <p className="text-white/70 text-sm line-clamp-2 mt-1">{event.beschrijving}</p>
+                  </div>
+
+                  <div className="flex items-center gap-3 text-xs text-white/70">
+                    <div className="inline-flex items-center gap-1.5">
+                      <Clock className="w-3.5 h-3.5" />
+                      <span>{event.tijd ?? formatTime(event.datum)}</span>
+                    </div>
+                    <div className="inline-flex items-center gap-1.5">
+                      <MapPin className="w-3.5 h-3.5" />
+                      <span>{event.locatie}</span>
+                    </div>
+                  </div>
+
+                  <div className="inline-flex items-center gap-2 text-sm font-semibold text-[#c9a050]">
+                    <span>Inschrijven</span>
+                    <ChevronRight className="w-4 h-4" />
+                  </div>
+                </button>
+              );
+            })}
+          </div>
+        )}
+      </div>
+
+      <div className="flex flex-wrap items-center gap-3 mt-6 text-xs text-white/60">
+        <div className="inline-flex items-center gap-2">
+          <span className="w-3 h-3 rounded-full bg-[#c9a050]/60" />
+          Workshops
         </div>
-      ) : (
-        <div className="grid gap-4 md:gap-5 md:grid-cols-2">
-          {monthEvents.map((event) => {
-            const meta = categoryMeta[event.category];
-            const date = new Date(event.datum).toLocaleDateString("nl-NL", {
-              day: "numeric",
-              month: "long",
-            });
-
-            return (
-              <button
-                key={event.id}
-                onClick={() => onSelect(event)}
-                className="text-left rounded-2xl border border-white/10 bg-white/5 p-4 flex flex-col gap-3 hover:border-[#c9a050]/40 transition"
-              >
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2 text-xs uppercase tracking-wide text-white/70">
-                    <span className={`w-2.5 h-2.5 rounded-full ${meta.dot}`} />
-                    {meta.label}
-                  </div>
-                  <span className="text-white/60 text-sm">{date}</span>
-                </div>
-
-                <div>
-                  <h4 className="text-white font-semibold text-base line-clamp-2">{event.titel}</h4>
-                  <p className="text-white/70 text-sm line-clamp-2 mt-1">{event.beschrijving}</p>
-                </div>
-
-                <div className="flex items-center gap-3 text-xs text-white/70">
-                  <div className="inline-flex items-center gap-1.5">
-                    <Clock className="w-3.5 h-3.5" />
-                    <span>{event.tijd ?? formatTime(event.datum)}</span>
-                  </div>
-                  <div className="inline-flex items-center gap-1.5">
-                    <MapPin className="w-3.5 h-3.5" />
-                    <span>{event.locatie}</span>
-                  </div>
-                </div>
-
-                <div className="inline-flex items-center gap-2 text-sm font-semibold text-[#c9a050]">
-                  <span>Inschrijven</span>
-                  <ChevronRight className="w-4 h-4" />
-                </div>
-              </button>
-            );
-          })}
+        <div className="inline-flex items-center gap-2">
+          <span className="w-3 h-3 rounded-full bg-sky-400/60" />
+          Trainingen
         </div>
-      )}
+        <div className="inline-flex items-center gap-2">
+          <span className="w-3 h-3 rounded-full bg-emerald-400/60" />
+          Events
+        </div>
+      </div>
     </div>
   );
 }

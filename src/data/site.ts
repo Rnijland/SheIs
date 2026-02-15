@@ -91,13 +91,6 @@ export const services: Service[] = [
       "Dag en nacht bereikbaar voor acute situaties. Je staat er niet alleen voor - wij zijn er wanneer je ons nodig hebt.",
     icon: "Phone",
   },
-  {
-    id: "advies",
-    titel: "Anoniem Advies",
-    beschrijving:
-      "Vragen of zorgen? Neem vrijblijvend en anoniem contact op. Wij luisteren zonder te oordelen.",
-    icon: "MessageCircle",
-  },
 ];
 
 export const navItems = [

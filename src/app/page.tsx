@@ -32,6 +32,7 @@ export default function Home() {
         direction="left"
       />
       <About />
+      <Services />
       <MarqueeLoop
         images={[
           "/Loop201.webp",
@@ -50,7 +51,6 @@ export default function Home() {
         alt="SHE evenementen"
         direction="left"
       />
-      <Services />
       <Events
         workshops={workshops}
         trainingen={trainingen}

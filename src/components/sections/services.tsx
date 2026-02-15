@@ -83,7 +83,8 @@ export function Services() {
           </h2>
           <p className="max-w-2xl mx-auto text-base md:text-lg text-gray-600 px-4">
             Wij bieden diverse vormen van ondersteuning aan voor iedereen die te
-            maken heeft met huiselijk geweld of kindermishandeling.
+            maken heeft met huiselijk geweld of kindermishandeling – van trainingen en
+            crisishulp tot volledig anoniem advies wanneer je dat nodig hebt.
           </p>
         </motion.div>
 
@@ -103,9 +104,9 @@ export function Services() {
 
               const Icon = iconMap[service.icon] || Heart;
               return (
-                <div key={service.id} className="p-5 rounded-2xl border border-[#1a3a4a] bg-[#1a3a4a] min-h-[260px] flex flex-col gap-3">
-                  <div className="w-12 h-12 rounded-xl bg-[#c9a050] flex items-center justify-center">
-                    <Icon className="w-6 h-6 text-white" />
+                <div key={service.id} className="p-5 rounded-2xl border border-[#1a3a4a] bg-[#1a3a4a] min-h-[260px] flex flex-col gap-3 text-center">
+                  <div className="w-12 h-12 rounded-full bg-[#c9a050]/20 border border-[#c9a050]/40 mx-auto flex items-center justify-center">
+                    <Icon className="w-6 h-6 text-[#c9a050]" />
                   </div>
                   <h3 className="font-heading text-lg font-semibold text-white">{service.titel}</h3>
                   <p className="text-white/80 leading-relaxed text-sm flex-1">{service.beschrijving}</p>
@@ -157,14 +158,14 @@ export function Services() {
                 transition={{ duration: 0.4, delay: index * 0.1 }}
                 className="group"
               >
-                <div className="h-full p-8 rounded-2xl border border-[#1a3a4a] bg-[#1a3a4a] hover:bg-[#244a5a] active:scale-[0.98] transition-all duration-300">
-                  <div className="w-14 h-14 rounded-xl bg-[#c9a050] flex items-center justify-center mb-6">
-                    <Icon className="w-7 h-7 text-white" />
+                <div className="h-full p-8 rounded-2xl border border-[#1a3a4a] bg-[#1a3a4a] transition-all duration-300 text-center flex flex-col gap-4">
+                  <div className="w-16 h-16 rounded-full bg-[#c9a050]/20 border border-[#c9a050]/40 mx-auto flex items-center justify-center">
+                    <Icon className="w-8 h-8 text-[#c9a050]" />
                   </div>
-                  <h3 className="font-heading text-xl font-semibold text-white mb-3">
+                  <h3 className="font-heading text-xl font-semibold text-white">
                     {service.titel}
                   </h3>
-                  <p className="text-white/80 leading-relaxed text-base">
+                  <p className="text-white/80 leading-relaxed text-base flex-1">
                     {service.beschrijving}
                   </p>
                 </div>
@@ -187,15 +188,15 @@ export function Services() {
               return (
                 <div
                   key={service.id}
-                  className="group h-full p-8 rounded-2xl border border-[#1a3a4a] bg-[#1a3a4a] hover:bg-[#244a5a] active:scale-[0.98] transition-all duration-300"
+                  className="group h-full p-8 rounded-2xl border border-[#1a3a4a] bg-[#1a3a4a] transition-all duration-300 text-center flex flex-col gap-4"
                 >
-                  <div className="w-14 h-14 rounded-xl bg-[#c9a050] flex items-center justify-center mb-6">
-                    <Icon className="w-7 h-7 text-white" />
+                  <div className="w-16 h-16 rounded-full bg-[#c9a050]/20 border border-[#c9a050]/40 mx-auto flex items-center justify-center">
+                    <Icon className="w-8 h-8 text-[#c9a050]" />
                   </div>
-                  <h3 className="font-heading text-xl font-semibold text-white mb-3">
+                  <h3 className="font-heading text-xl font-semibold text-white">
                     {service.titel}
                   </h3>
-                  <p className="text-white/80 leading-relaxed text-base">{service.beschrijving}</p>
+                  <p className="text-white/80 leading-relaxed text-base flex-1">{service.beschrijving}</p>
                 </div>
               );
             })}

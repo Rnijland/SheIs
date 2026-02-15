@@ -39,7 +39,7 @@ export function About() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="md:basis-2/3 flex"
           >
-            <div className="bg-white/95 rounded-3xl p-6 md:p-8 lg:p-12 shadow-lg border border-white/20 flex flex-col">
+            <div className="bg-white/5 rounded-3xl p-6 md:p-8 lg:p-10 shadow-xl border border-white/10 flex flex-col justify-center w-full">
               <div className="flex flex-col gap-6">
                 <div className="flex flex-col md:flex-row gap-6 md:gap-8 items-center">
                   <div className="relative w-32 h-32 md:w-40 md:h-40 lg:w-52 lg:h-52 rounded-full overflow-hidden border-4 border-[#c9a050]/30 flex-shrink-0 shadow-lg">
@@ -51,13 +51,13 @@ export function About() {
                     />
                   </div>
                   <div className="text-center md:text-left">
-                    <h3 className="font-heading text-xl md:text-2xl lg:text-3xl font-semibold text-black mb-2">
+                    <h3 className="font-heading text-xl md:text-2xl lg:text-3xl font-semibold text-white mb-2">
                       {aboutContent.oprichter.naam}
                     </h3>
                     <p className="text-[#c9a050] font-medium mb-3 md:mb-4 text-sm md:text-base">
                       {aboutContent.oprichter.rol}
                     </p>
-                    <p className="text-gray-600 leading-relaxed text-sm md:text-base">
+                    <p className="text-white/80 leading-relaxed text-sm md:text-base">
                       {aboutContent.oprichter.beschrijving}
                     </p>
                   </div>
@@ -81,12 +81,12 @@ export function About() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: index * 0.1 }}
-                  className="text-center py-6 px-4 rounded-2xl bg-white/90 border border-white/20 shadow-lg"
+                  className="text-center py-6 px-4 rounded-2xl bg-white/5 border border-white/10 shadow-lg"
                 >
                   <div className="text-2xl md:text-4xl font-bold text-[#c9a050] mb-1">
                     {typeof stat.waarde === "number" ? `${stat.waarde}+` : stat.waarde}
                   </div>
-                  <div className="text-gray-600 font-medium text-xs md:text-base">{stat.label}</div>
+                  <div className="text-white/80 font-medium text-xs md:text-base">{stat.label}</div>
                 </motion.div>
               ))}
             </div>

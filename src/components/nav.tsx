@@ -82,7 +82,7 @@ export function Nav() {
                 className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#c9a050] text-black text-sm font-semibold hover:bg-[#d4af37] transition-colors"
               >
                 <MessageCircle className="w-4 h-4" />
-                WhatsApp Ons
+                Stuur jouw verhaal
               </a>
             </div>
 
@@ -142,7 +142,7 @@ export function Nav() {
                 className="mt-4 inline-flex items-center gap-2 px-8 py-4 rounded-full bg-[#c9a050] text-black text-lg font-semibold"
               >
                 <MessageCircle className="w-5 h-5" />
-                WhatsApp Ons
+                Stuur jouw verhaal
               </motion.a>
             </nav>
           </motion.div>

@@ -9,6 +9,7 @@ export interface Event {
   afbeelding: string;
   actief: boolean;
   tijd?: string;
+  comingSoon?: boolean;
 }
 
 export interface Workshop extends Event {

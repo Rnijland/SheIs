@@ -131,7 +131,16 @@ export function Footer() {
         <div className="mt-6 md:mt-12 pt-4 md:pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-2 md:gap-4 text-center">
           <p className="text-white/50 text-xs md:text-sm">
             &copy; {currentYear} Stichting Human Empowerment. Alle rechten
-            voorbehouden.
+            voorbehouden. Website gemaakt door {" "}
+            <a
+              href="https://www.amplifybyaura.nl/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#c9a050] hover:text-white transition-colors"
+            >
+              Amplify
+            </a>
+            .
           </p>
           {siteConfig.kvk && (
             <p className="text-white/50 text-xs md:text-sm">

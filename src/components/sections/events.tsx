@@ -81,10 +81,12 @@ function CalendarView({
           <div className="grid gap-4 md:gap-5 md:grid-cols-2 flex-1">
             {monthEvents.map((event) => {
               const meta = categoryMeta[event.category];
-              const date = new Date(event.datum).toLocaleDateString("nl-NL", {
-                day: "numeric",
-                month: "long",
-              });
+              const dateLabel = event.comingSoon
+                ? "Binnenkort"
+                : new Date(event.datum).toLocaleDateString("nl-NL", {
+                    day: "numeric",
+                    month: "long",
+                  });
 
               return (
                 <button
@@ -97,7 +99,7 @@ function CalendarView({
                       <span className={`w-2.5 h-2.5 rounded-full ${meta.dot}`} />
                       {meta.label}
                     </div>
-                    <span className="text-white/60 text-sm">{date}</span>
+                    <span className="text-white/60 text-sm">{dateLabel}</span>
                   </div>
 
                   <div>
@@ -108,7 +110,7 @@ function CalendarView({
                   <div className="flex items-center gap-3 text-xs text-white/70">
                     <div className="inline-flex items-center gap-1.5">
                       <Clock className="w-3.5 h-3.5" />
-                      <span>{event.tijd ?? formatTime(event.datum)}</span>
+                      <span>{event.comingSoon ? "Volgt binnenkort" : event.tijd ?? formatTime(event.datum)}</span>
                     </div>
                     <div className="inline-flex items-center gap-1.5">
                       <MapPin className="w-3.5 h-3.5" />
@@ -449,6 +451,11 @@ function EventCard({
           <h3 className="font-heading text-base md:text-lg font-semibold text-white mb-2 group-hover:text-[#c9a050] transition-colors">
             {event.titel}
           </h3>
+          {event.comingSoon && (
+            <span className="inline-flex items-center gap-2 text-xs font-semibold text-[#c9a050] bg-[#c9a050]/10 px-3 py-1 rounded-full w-fit mb-2">
+              Binnenkort beschikbaar
+            </span>
+          )}
           <p className="text-white/70 text-sm mb-3 line-clamp-3 flex-1">
             {event.beschrijving}
           </p>
@@ -456,11 +463,11 @@ function EventCard({
           <div className="flex flex-wrap items-center gap-3 md:gap-4 text-xs md:text-sm mt-auto">
             <div className="flex items-center gap-1.5 text-[#c9a050]">
               <Calendar className="w-3.5 h-3.5 md:w-4 md:h-4" />
-              <span>{formatDate(event.datum)}</span>
+              <span>{event.comingSoon ? "Binnenkort" : formatDate(event.datum)}</span>
             </div>
             <div className="flex items-center gap-1.5 text-white/70">
               <Clock className="w-3.5 h-3.5 md:w-4 md:h-4" />
-              <span>{event.tijd ?? formatTime(event.datum)}</span>
+              <span>{event.comingSoon ? "Volgt binnenkort" : event.tijd ?? formatTime(event.datum)}</span>
             </div>
 
             <button
@@ -535,11 +542,11 @@ function EventModal({
           <div className="flex flex-wrap gap-2 md:gap-4 mb-6 text-xs md:text-sm">
             <div className="flex items-center gap-1.5 md:gap-2 px-2.5 md:px-3 py-1 md:py-1.5 rounded-full bg-[#c9a050]/20 text-[#c9a050]">
               <Calendar className="w-3.5 h-3.5 md:w-4 md:h-4" />
-              <span>{formatDate(event.datum)}</span>
+              <span>{event.comingSoon ? "Binnenkort" : formatDate(event.datum)}</span>
             </div>
             <div className="flex items-center gap-1.5 md:gap-2 px-2.5 md:px-3 py-1 md:py-1.5 rounded-full bg-white/10 text-white/70">
               <Clock className="w-3.5 h-3.5 md:w-4 md:h-4" />
-              <span>{formatTime(event.datum)}</span>
+              <span>{event.comingSoon ? "Volgt binnenkort" : formatTime(event.datum)}</span>
             </div>
             <div className="flex items-center gap-1.5 md:gap-2 px-2.5 md:px-3 py-1 md:py-1.5 rounded-full bg-white/10 text-white/70">
               <MapPin className="w-3.5 h-3.5 md:w-4 md:h-4" />

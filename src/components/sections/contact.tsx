@@ -17,6 +17,7 @@ export function Contact() {
   const [formState, setFormState] = useState({
     name: "",
     email: "",
+    subject: "",
     message: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -40,7 +41,7 @@ export function Contact() {
 
       if (res.ok) {
         setSubmitStatus("success");
-        setFormState({ name: "", email: "", message: "" });
+        setFormState({ name: "", email: "", subject: "", message: "" });
       } else {
         setSubmitStatus("error");
       }
@@ -153,6 +154,34 @@ export function Contact() {
                     className="w-full px-4 py-3 rounded-xl border border-white/20 bg-white text-black text-sm md:text-base focus:outline-none focus:ring-2 focus:ring-[#c9a050] focus:border-transparent transition-all"
                     placeholder="je@email.nl"
                   />
+                </div>
+
+                <div>
+                  <label htmlFor="subject" className="block text-sm font-medium text-white/80 mb-1.5 md:mb-2">
+                    Onderwerp
+                  </label>
+                  <div className="relative">
+                    <select
+                      id="subject"
+                      value={formState.subject}
+                      onChange={(e) => setFormState({ ...formState, subject: e.target.value })}
+                      required
+                      className="w-full appearance-none px-4 pr-12 py-3 rounded-xl border border-white/20 bg-white text-black text-sm md:text-base focus:outline-none focus:ring-2 focus:ring-[#c9a050] focus:border-transparent transition-all"
+                    >
+                      <option value="" disabled>
+                        Kies een onderwerp
+                      </option>
+                      <option value="hulp">Ik heb direct hulp nodig</option>
+                      <option value="advies">Ik zoek advies of informatie</option>
+                      <option value="aanmelden">Aanmelden voor programma of event</option>
+                      <option value="samenwerking">Samenwerking of partnerverzoek</option>
+                      <option value="verhaal">Ik wil mijn verhaal delen</option>
+                      <option value="anders">Anders / vertel meer in je bericht</option>
+                    </select>
+                    <span className="pointer-events-none absolute inset-y-0 right-4 flex items-center text-[#1a3a4a]/60">
+                      ▼
+                    </span>
+                  </div>
                 </div>
 
                 <div>

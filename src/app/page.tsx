@@ -6,6 +6,7 @@ import { Services } from "@/components/sections/services";
 import { Events } from "@/components/sections/events";
 import { Contact } from "@/components/sections/contact";
 import { MarqueeLoop } from "@/components/marquee-loop";
+import { LogoBanner } from "@/components/logo-banner";
 import { getWorkshops, getTrainingen, getEvenementen } from "@/lib/data";
 
 export default function Home() {
@@ -71,6 +72,7 @@ export default function Home() {
         direction="left"
       />
       <Contact />
+      <LogoBanner />
       <Footer />
     </main>
   );

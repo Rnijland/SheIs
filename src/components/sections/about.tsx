@@ -107,7 +107,7 @@ export function About() {
               poster="/thumbnailsheisvideo.png"
               className="w-full h-full max-h-[540px] object-cover"
             >
-              <source src="/videos/sheisvideo.mp4" type="video/mp4" />
+              <source src="/videos/sheisvideo.MP4" type="video/mp4" />
               Your browser does not support the video tag.
             </video>
           </div>

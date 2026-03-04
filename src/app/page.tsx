@@ -24,7 +24,6 @@ export default function Home() {
           "/Loop101.webp",
           "/Loop102.webp",
           "/Loop103.webp",
-          "/Loop104.webp",
           "/Loop105.webp",
           "/Loop106.webp",
           "/Loop107.webp",
@@ -36,9 +35,7 @@ export default function Home() {
       <Services />
       <MarqueeLoop
         images={[
-          "/Loop201.webp",
           "/Loop202.webp",
-          "/Loop203.webp",
           "/Loop204.webp",
           "/Loop205.webp",
           "/Loop206.webp",

@@ -54,19 +54,21 @@ function CalendarView({
         <div className="flex items-center justify-center gap-4 w-full max-w-lg">
           <button
             onClick={() => onNavigate(-1)}
-            className="w-10 h-10 rounded-full flex items-center justify-center border border-[#c9a050]/40 text-[#c9a050] hover:bg-[#c9a050]/10 transition flex-shrink-0"
+            className="h-10 px-4 rounded-full inline-flex items-center justify-center gap-2 border border-[#c9a050]/40 text-[#c9a050] hover:bg-[#c9a050]/10 transition flex-shrink-0"
             aria-label="Vorige maand"
           >
             <ChevronLeft className="w-5 h-5" />
+            <span className="text-sm font-medium">Vorige</span>
           </button>
           <h3 className="flex-1 text-2xl md:text-3xl font-heading font-semibold text-white capitalize text-center">
             {monthName}
           </h3>
           <button
             onClick={() => onNavigate(1)}
-            className="w-10 h-10 rounded-full flex items-center justify-center border border-[#c9a050]/40 text-[#c9a050] hover:bg-[#c9a050]/10 transition flex-shrink-0"
+            className="h-10 px-4 rounded-full inline-flex items-center justify-center gap-2 border border-[#c9a050]/40 text-[#c9a050] hover:bg-[#c9a050]/10 transition flex-shrink-0"
             aria-label="Volgende maand"
           >
+            <span className="text-sm font-medium">Volgende</span>
             <ChevronRight className="w-5 h-5" />
           </button>
         </div>

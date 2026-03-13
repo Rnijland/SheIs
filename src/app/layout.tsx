@@ -19,6 +19,11 @@ const playfair = Playfair_Display({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://she-is.nl"),
+  icons: {
+    icon: "/logos/BlackLogoTopNav.png",
+    shortcut: "/logos/BlackLogoTopNav.png",
+    apple: "/logos/BlackLogoTopNav.png",
+  },
   title: {
     default: "SHE - Stichting Human Empowerment",
     template: `%s | SHE`,

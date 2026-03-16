@@ -83,8 +83,7 @@ export function Services() {
           </h2>
           <p className="max-w-2xl mx-auto text-base md:text-lg text-gray-600 px-4">
             Wij bieden diverse vormen van ondersteuning aan voor iedereen die te
-            maken heeft met huiselijk geweld of kindermishandeling – van trainingen en
-            crisishulp tot volledig anoniem advies wanneer je dat nodig hebt.
+            maken heeft met huiselijk geweld of kindermishandeling – van begeleiding en trainingen tot volledig anoniem advies wanneer je dat nodig hebt.
           </p>
         </motion.div>
 

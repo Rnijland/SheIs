@@ -20,12 +20,12 @@ const playfair = Playfair_Display({
 export const metadata: Metadata = {
   metadataBase: new URL("https://she-is.nl"),
   icons: {
-    icon: "/logos/BlackLogoTopNav.png",
-    shortcut: "/logos/BlackLogoTopNav.png",
-    apple: "/logos/BlackLogoTopNav.png",
+    icon: "/logos/Favicon.png",
+    shortcut: "/logos/Favicon.png",
+    apple: "/logos/Favicon.png",
   },
   title: {
-    default: "SHE - Stichting Human Empowerment",
+    default: "SHE! IS! Stichting Human Empowerment",
     template: `%s | SHE`,
   },
   description:
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Stichting Human Empowerment" }],
   openGraph: {
-    title: "SHE - Stichting Human Empowerment",
+    title: "SHE! IS! Stichting Human Empowerment",
     description:
       "Een veilige omgeving waar slachtoffers gehoord worden. 24/7 bereikbaar voor hulp bij huiselijk geweld en kindermishandeling.",
     url: "https://she-is.nl",
@@ -64,7 +64,7 @@ export const metadata: Metadata = {
     },
   },
   twitter: {
-    title: "SHE - Stichting Human Empowerment",
+    title: "SHE! IS! Stichting Human Empowerment",
     card: "summary_large_image",
     description:
       "Ondersteuning bij huiselijk geweld en kindermishandeling. 24/7 bereikbaar.",

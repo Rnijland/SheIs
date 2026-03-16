@@ -38,7 +38,7 @@ export const heroContent: HeroContent = {
 export const aboutContent: AboutContent = {
   titel: "Over SHE",
   intro:
-    "Stichting Human Empowerment (SHE) creëert een veilige omgeving waar slachtoffers gehoord worden en plegers de hulp krijgen die ze nodig hebben. Wij geloven in de kracht van herstel en transformatie.",
+    "Stichting Human Empowerment (SHE) creëert een veilige omgeving waar mensen gehoord worden en plegers de hulp krijgen die ze nodig hebben. Wij geloven in de kracht van herstel en transformatie.",
   oprichter: {
     naam: "Lydy Blijd",
     rol: "Oprichter & Ervaringsdeskundige",
@@ -74,7 +74,7 @@ export const services: Service[] = [
     id: "krachtvrouwen",
     titel: "Nieuwe Krachtvrouwen Training",
     beschrijving:
-      "Ons vlaggenschip programma helpt vrouwen hun pijn te verwerken en anderen te ondersteunen. Gebaseerd op bewezen methodieken.",
+      "Wij bieden persoonlijke gesprekken, begeleiding, Informatieve workshops en krachttrainingen!",
     icon: "Users",
   },
   {

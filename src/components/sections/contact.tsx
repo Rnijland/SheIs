@@ -122,7 +122,7 @@ export function Contact() {
                 Stuur ons een bericht
               </h3>
               <p className="text-white/70 text-sm md:text-base mb-5 md:mb-6">
-                Wij staan voor je klaar. Of je nu vragen hebt, advies zoekt of gewoon even wilt praten - vul het formulier in en we nemen zo snel mogelijk contact met je op. Alles blijft vertrouwelijk.
+                Wij staan voor je klaar. Of je nu vragen hebt of advies zoekt - vul het formulier in en we nemen zo snel mogelijk contact met je op. Alles blijft vertrouwelijk.
               </p>
 
               <form onSubmit={handleSubmit} className="space-y-4 md:space-y-5">

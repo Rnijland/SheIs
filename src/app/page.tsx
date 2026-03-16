@@ -21,7 +21,6 @@ export default function Home() {
       <Hero />
       <MarqueeLoop
         images={[
-          "/Loop102.webp",
           "/Loop103.webp",
           "/Loop107.webp",
         ]}
@@ -39,7 +38,6 @@ export default function Home() {
         images={[
           "/Loop301.webp",
           "/Loop302.webp",
-          "/Loop305.webp",
           "/Loop306.webp",
         ]}
         alt="SHE workshops"
